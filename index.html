@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICAAP Weaknesses in KSA Banks — Risk Management Insight</title>
+<meta name="description" content="Three ICAAP weaknesses SAMA examiners flag most often, and how to fix them. A practical guide for risk professionals in KSA banking.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:        #00612C;
+  --green-deep:  #004520;
+  --green-light: #E8F2EC;
+  --green-mid:   #C2DBCb;
+  --gold:        #C8992A;
+  --gold-light:  #F5EDD4;
+  --gold-deep:   #8A6718;
+  --parchment:   #F7F4EE;
+  --parchment-2: #EDE9DF;
+  --ink:          #1A1A1A;
+  --ink-2:       #3D3D3D;
+  --ink-3:       #6B6B6B;
+  --border:      #D4C89A;
+  --border-light:#E8E2D0;
+  --white:       #FFFFFF;
+  --red:          #8B1A1A;
+  --amber:        #7A4800;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--parchment);
+  color: var(--ink);
+  min-height: 100vh;
+  font-weight: 300;
+}
+
+/* ─── READING PROGRESS ─── */
+.progress-wrap {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--border-light);
+  z-index: 999;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  width: 0; transition: width 0.08s linear;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: var(--green-deep);
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.header-geo {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.geo-circle-1 {
+  position: absolute; right: -60px; top: -60px;
+  width: 260px; height: 260px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.15);
+}
+.geo-circle-2 {
+  position: absolute; right: 20px; top: -20px;
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.1);
+}
+.geo-line {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px; background: rgba(200,153,42,0.3);
+}
+.geo-pattern {
+  position: absolute; left: -20px; bottom: -20px;
+  width: 120px; height: 120px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(200,153,42,0.05) 0px,
+    rgba(200,153,42,0.05) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.header-inner {
+  position: relative; z-index: 1;
+  padding: 36px 40px 32px;
+  max-width: 760px;
+}
+
+.header-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.1s;
+}
+.eyebrow-line {
+  width: 24px; height: 1px; background: var(--gold);
+}
+.eyebrow-text {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 20px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.25s;
+}
+.header-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.header-divider {
+  width: 48px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 20px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.35s;
+}
+
+.author-row {
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.45s;
+}
+.author-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--gold-deep));
+  border: 1.5px solid rgba(200,153,42,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; font-weight: 600; color: var(--gold-light);
+  flex-shrink: 0;
+}
+.author-info { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.author-info strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* ─── DISCLAIMER ─── */
+.disclaimer {
+  background: var(--gold-light);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 40px;
+  font-size: 11px;
+  color: var(--gold-deep);
+  display: flex; align-items: center; gap: 8px;
+  opacity: 0; animation: riseIn 0.5s ease forwards 0.55s;
+}
+.disclaimer-icon { font-size: 12px; flex-shrink: 0; }
+
+/* ─── INTRO STYLING ─── */
+.intro {
+  padding: 30px 40px 10px;
+  max-width: 800px;
+}
+.intro p {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+.intro strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* ─── SELF ASSESSMENT INTERACTIVE PANEL ─── */
+.assess-wrap {
+  margin: 20px 40px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--white);
+  overflow: hidden;
+}
+.assess-trigger {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--parchment-2);
+  cursor: pointer;
+  gap: 14px;
+}
+.assess-icon-wrap { font-size: 20px; }
+.assess-trigger-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.assess-trigger-text strong {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.assess-trigger-text span {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+.assess-caret {
+  font-size: 10px;
+  color: var(--ink-3);
+  transition: transform 0.25s;
+}
+.assess-trigger.open .assess-caret {
+  transform: rotate(180deg);
+}
+.assess-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.assess-body.open {
+  max-height: 2000px;
+}
+.q-wrap {
+  padding: 20px;
+  border-bottom: 1px solid var(--parchment-2);
+}
+.q-wrap:last-child {
+  border-bottom: none;
+}
+.q-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.q-num {
+  background: var(--green-light);
+  color: var(--green);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.5;
+}
+.opt:hover {
+  background: var(--parchment);
+  border-color: var(--border);
+}
+.radio {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--ink-3);
+  border-radius: 50%;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--white);
+}
+.radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+/* Choice states applied by JS */
+.opt.g { border-color: var(--green); background: var(--green-light); }
+.opt.g .radio { border-color: var(--green); }
+.opt.g .radio-dot { background: var(--green); transform: scale(1); }
+
+.opt.m { border-color: var(--gold); background: var(--gold-light); }
+.opt.m .radio { border-color: var(--gold); }
+.opt.m .radio-dot { background: var(--gold); transform: scale(1); }
+
+.opt.b { border-color: var(--red); background: #FEF0F0; }
+.opt.b .radio { border-color: var(--red); }
+.opt.b .radio-dot { background: var(--red); transform: scale(1); }
+
+.q-feedback {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  border-left: 3px solid var(--border);
+  background: var(--parchment);
+}
+.q-feedback.show { display: block; }
+
+/* Diagnostic Scoring Panel */
+.score-box {
+  display: none;
+  margin: 10px 40px 20px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 6px;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+}
+.score-box.show { display: flex; }
+.score-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  min-width: 60px;
+}
+.score-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.score-desc strong { font-size: 14px; color: var(--ink); }
+.score-desc span { font-size: 12.5px; color: var(--ink-2); line-height: 1.5; }
+
+/* ─── SECTION LABEL ─── */
+.section-head {
+  padding: 32px 40px 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-head-line { flex: 1; height: 1px; background: var(--border-light); }
+.section-head-text {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* ─── WEAKNESS CARDS ─── */
+.weakness {
+  margin: 0 40px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--white);
+  overflow: hidden;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.2s;
+}
+.weakness.vis { opacity: 1; transform: translateY(0); }
+.weakness:hover { box-shadow: 0 4px 20px rgba(0,97,44,0.07); }
+
+.w-header {
+  display: flex; align-items: flex-start; gap: 0;
+  cursor: pointer;
+}
+
+.w-num-col {
+  width: 56px; flex-shrink: 0;
+  padding: 18px 0 18px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 600; line-height: 1;
+  color: var(--border);
+  transition: color 0.2s;
+}
+.weakness.open .w-num-col { color: var(--green); }
+
+.w-title-col {
+  flex: 1; padding: 18px 16px 18px 0;
+}
+.w-title {
+  font-size: 14px; font-weight: 500; color: var(--ink);
+  line-height: 1.4; margin-bottom: 3px;
+}
+.w-sub { font-size: 11.5px; color: var(--ink-3); }
+
+.w-sev {
+  padding: 18px 16px 18px 0;
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 6px; flex-shrink: 0;
+}
+.sev-badge {
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 20px;
+}
+.sev-high { background: #FEF0F0; color: var(--red); border: 1px solid #F0CCCC; }
+.sev-med  { background: #FDF6EA; color: var(--amber); border: 1px solid #E8D0A0; }
+.w-chevron {
+  font-size: 10px; color: var(--ink-3);
+  transition: transform 0.25s; margin-top: 2px;
+}
+.weakness.open .w-chevron { transform: rotate(180deg); }
+
+.w-body { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
+.weakness.open .w-body { max-height: 900px; }
+
+.w-inner {
+  padding: 18px 20px 20px;
+  border-top: 1px solid var(--parchment-2);
+}
+
+.w-desc {
+  font-size: 13.5px; line-height: 1.82;
+  color: var(--ink-2); margin-bottom: 18px;
+}
+.w-desc strong { color: var(--ink); font-weight: 500; }
+
+.fix-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.fix-head-line { flex: 1; height: 1px; background: var(--border-light); }
+.fix-head-text {
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--green);
+  white-space: nowrap;
+}
+.fix-diamond { color: var(--gold); font-size: 9px; }
+
+.fix-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--parchment-2);
+  font-size: 13px; color: var(--ink-2); line-height: 1.65;
+}
+.fix-row:last-child { border-bottom: none; }
+.fix-arrow {
+  color: var(--green); flex-shrink: 0;
+  font-size: 11px; margin-top: 3px; font-weight: 500;
+}
+
+.examiner-box {
+  margin-top: 16px;
+  background: var(--green-deep);
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+.examiner-label {
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 6px;
+}
+.examiner-q {
+  font-size: 12.5px; color: rgba(255,255,255,0.8);
+  line-height: 1.65; font-style: italic;
+}
+
+/* ─── CLOSING ─── */
+.closing-wrap {
+  padding: 28px 40px 12px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 1s;
+}
+.closing {
+  background: var(--green);
+  border-radius: 6px;
+  padding: 24px 28px;
+  position: relative; overflow: hidden;
+}
+.closing::before {
+  content: '';
+  position: absolute; right: -30px; top: -30px;
+  width: 140px; height: 140px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.2);
+}
+.closing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--white); margin-bottom: 10px; position: relative;
+}
+.closing p {
+  font-size: 13.5px; line-height: 1.75;
+  color: rgba(255,255,255,0.75); position: relative;
+}
+.closing p + p { margin-top: 10px; }
+.closing strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
+/* ─── FOOTER DISCLAIMER ─── */
+.footer-disclaimer {
+  margin: 20px 40px 10px;
+  padding: 12px 16px;
+  background: var(--gold-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 11px; color: var(--gold-deep);
+  line-height: 1.6;
+  opacity: 0; animation: riseIn 0.5s ease forwards 1.05s;
+}
+
+/* ─── HASHTAGS ─── */
+.hashtags {
+  padding: 8px 40px 40px;
+  font-size: 12px; color: var(--green);
+  line-height: 2.2;
+  opacity: 0; animation: riseIn 0.5s ease forwards 1.1s;
+}
+.hashtags a { color: var(--green); text-decoration: none; margin-right: 4px; }
+.hashtags a:hover { color: var(--gold-deep); }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .header-inner, .intro, .assess-wrap,
+  .section-head, .closing-wrap,
+  .footer-disclaimer, .hashtags { padding-left: 20px; padding-right: 20px; }
+  .weakness, .score-box { margin-left: 16px; margin-right: 16px; }
+  .assess-wrap { padding-left: 16px; padding-right: 16px; }
+  .disclaimer { padding-left: 20px; padding-right: 20px; }
+  .score-box { margin-left: 16px; margin-right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap"><div class="progress-fill" id="prog"></div></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-geo">
+    <div class="geo-circle-1"></div>
+    <div class="geo-circle-2"></div>
+    <div class="geo-line"></div>
+    <div class="geo-pattern"></div>
+  </div>
+  <div class="header-inner">
+    <div class="header-eyebrow">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-text">ICAAP · Pillar 2 · SAMA · Risk Management</div>
+    </div>
+    <h1 class="header-title">
+      The <em>3 ICAAP weaknesses</em><br>
+      SAMA examiners flag most often —<br>
+      and how to fix them
+    </h1>
+    <div class="header-divider"></div>
+    <div class="author-row">
+      <div class="author-avatar">Y</div>
+      <div class="author-info">
+        <strong>Senior Risk Professional · FRM® · SCR®</strong>
+        15+ years · Basel III · SAMA · Credit, Liquidity &amp; Operational Risk
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TOP DISCLAIMER -->
+<div class="disclaimer">
+  <span class="disclaimer-icon">◆</span>
+  <span>The views expressed in this article are solely my own and do not represent, reflect or constitute the views, opinions or positions of my current or any past employer.</span>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <p>I have sat across from SAMA examiners more than once. And I have reviewed ICAAP documents from institutions that clearly understood the <em>structure</em> of the process — but not the <em>substance</em>.</p>
+  <p>The result is always the same: a document that looks complete, but fails to answer the question the regulator is actually asking: <strong>"Do you truly understand your own risk — or have you documented what you think we want to see?"</strong></p>
+  <p>Here are the three weaknesses that surface most consistently across KSA banks, and what robust remediation looks like in practice.</p>
+</div>
+
+<!-- SELF ASSESSMENT -->
+<div class="assess-wrap">
+  <div class="assess-trigger" id="atrig" onclick="toggleAssess()">
+    <div class="assess-icon-wrap">📋</div>
+    <div class="assess-trigger-text">
+      <strong>Self-assessment: How does your ICAAP hold up?</strong>
+      <span>3 questions · 60 seconds · Scored diagnostic with feedback</span>
+    </div>
+    <div class="assess-caret" id="acaret">▼</div>
+  </div>
+  <div class="assess-body" id="abody">
+    <div class="q-wrap">
+      <div class="q-text"><span class="q-num">1</span>Your ICAAP capital projections for the next 3 years — how closely do they align with your strategic business plan?</div>
+      <div class="options">
+        <div class="opt" onclick="pick(this,'q1','g')"><div class="radio"><div class="radio-dot"></div></div>Directly linked — same assumptions, same macro scenarios, reviewed jointly by Risk and Finance</div>
+        <div class="opt" onclick="pick(this,'q1','m')"><div class="radio"><div class="radio-dot"></div></div>Loosely connected — similar timeframe but built by different teams with different assumptions</div>
+        <div class="opt" onclick="pick(this,'q1','b')"><div class="radio"><div class="radio-dot"></div></div>Separate exercises — Risk and Finance work independently; the ICAAP and business plan are not reconciled</div>
+      </div>
+      <div class="q-feedback" id="fb-q1"></div>
+    </div>
+    <div class="q-wrap">
+      <div class="q-text"><span class="q-num">2</span>Your Pillar 2 capital add-ons — are they derived from internal stress scenarios specific to your institution, or from regulatory floors?</div>
+      <div class="options">
+        <div class="opt" onclick="pick(this,'q2','g')"><div class="radio"><div class="radio-dot"></div></div>Our own scenarios — institution-specific risks, bespoke stress assumptions, not anchored to regulatory minimums</div>
+        <div class="opt" onclick="pick(this,'q2','m')"><div class="radio"><div class="radio-dot"></div></div>Hybrid — regulatory floors with some internal overlays, partially quantified</div>
+        <div class="opt" onclick="pick(this,'q2','b')"><div class="radio"><div class="radio-dot"></div></div>Primarily regulatory minimums — we have not run bespoke internal stress scenarios to generate the add-ons</div>
+      </div>
+      <div class="q-feedback" id="fb-q2"></div>
+    </div>
+    <div class="q-wrap">
+      <div class="q-text"><span class="q-num">3</span>Your Board's involvement in the ICAAP process — which best describes it?</div>
+      <div class="options">
+        <div class="opt" onclick="pick(this,'q3','g')"><div class="radio"><div class="radio-dot"></div></div>The Board reviews assumptions and challenges scenarios at the design stage — not just the final document</div>
+        <div class="opt" onclick="pick(this,'q3','m')"><div class="radio"><div class="radio-dot"></div></div>The Board receives a summary presentation and formally approves the final submission</div>
+        <div class="opt" onclick="pick(this,'q3','b')"><div class="radio"><div class="radio-dot"></div></div>The Board signs off — detailed review is done at senior management level only</div>
+      </div>
+      <div class="q-feedback" id="fb-q3"></div>
+    </div>
+  </div>
+</div>
+<div class="score-box" id="scorebox">
+  <div class="score-big" id="scorenum">—</div>
+  <div class="score-desc">
+    <strong id="score-title">—</strong>
+    <span id="score-detail">—</span>
+  </div>
+</div>
+
+<!-- WEAKNESSES SECTION -->
+<div class="section-head">
+  <div class="section-head-text">The three weaknesses</div>
+  <div class="section-head-line"></div>
+</div>
+
+<!-- W1 -->
+<div class="weakness" id="w1">
+  <div class="w-header" onclick="tog('w1')">
+    <div class="w-num-col">01</div>
+    <div class="w-title-col">
+      <div class="w-title">The ICAAP and the business plan speak different languages</div>
+      <div class="w-sub">Capital planning disconnected from strategic planning</div>
+    </div>
+    <div class="w-sev">
+      <span class="sev-badge sev-high">High severity</span>
+      <div class="w-chevron">▼</div>
+    </div>
+  </div>
+  <div class="w-body">
+    <div class="w-inner">
+      <div class="w-desc">
+        The business plan projects SME book growth of 40% over three years. The ICAAP models a 15% growth scenario. They were written by different teams, in different quarters, anchored to different macro assumptions. <strong>SAMA examiners identify this within the first thirty minutes of a supervisory visit.</strong>
+        <br><br>
+        If your capital projections are not stress-tested against the same assumptions as your strategy, the ICAAP ceases to be a forward-looking management tool — it becomes a compliance artefact. That is not what Pillar 2 was designed to produce, and SAMA's supervisory expectations have evolved accordingly.
+      </div>
+      <div class="fix-head">
+        <div class="fix-diamond">◆</div>
+        <div class="fix-head-text">Remediation</div>
+        <div class="fix-head-line"></div>
+      </div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Run a mandatory joint scenario-setting workshop between Risk and Finance at the start of every ICAAP cycle — align macro, growth, and margin assumptions before either team begins modelling</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>The ICAAP base scenario must be numerically identical to the base case in the strategic plan — same revenue, same credit growth, same cost trajectory</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Stress scenarios should directly test the downside of your specific strategic bets — real estate concentration, SME expansion, digital lending — not generic macroeconomic shocks</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Include a one-page reconciliation table in the ICAAP document showing exactly where assumptions align and where they deliberately diverge, with rationale</span></div>
+      <div class="examiner-box">
+        <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
+        <div class="examiner-q">"Walk me through how your growth assumptions in the business plan are reflected in your capital projections. What happens to your capital adequacy ratio if growth comes in 20 percentage points above your base case?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- W2 -->
+<div class="weakness" id="w2">
+  <div class="w-header" onclick="tog('w2')">
+    <div class="w-num-col">02</div>
+    <div class="w-title-col">
+      <div class="w-title">Pillar 2 add-ons are regulatory minimums dressed up as internal assessments</div>
+      <div class="w-sub">Capital quantification lacks institution-specific justification</div>
+    </div>
+    <div class="w-sev">
+      <span class="sev-badge sev-high">High severity</span>
+      <div class="w-chevron">▼</div>
+    </div>
+  </div>
+  <div class="w-body">
+    <div class="w-inner">
+      <div class="w-desc">
+        Walk into most KSA banks' ICAAP documents and the Pillar 2 add-ons are reverse-engineered from the regulatory floor. The capital number was anchored first; the stress narrative was written to justify it second. <strong>Experienced examiners have reviewed hundreds of these documents. They know the pattern immediately.</strong>
+        <br><br>
+        A genuine Pillar 2 assessment quantifies risks that Pillar 1 does not fully capture — concentration risk, IRRBB, operational risk beyond the standardised charge, reputational and strategic risk. The add-on must be a number your own scenarios produced, not a number anchored to a minimum.
+      </div>
+      <div class="fix-head">
+        <div class="fix-diamond">◆</div>
+        <div class="fix-head-text">Remediation</div>
+        <div class="fix-head-line"></div>
+      </div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Run bespoke stress scenarios for each material Pillar 2 risk — document the methodology and assumptions, not just the capital output</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>For concentration risk: calculate your HHI (Herfindahl-Hirschman Index) for single-name, sector, and geographic exposures — translate the excess concentration to a capital equivalent under your worst stress scenario</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>For IRRBB: model the impact of a 200bps parallel shift and a steepening scenario on both NII and EVE — SAMA expects quantification, not narrative description</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>For operational risk: supplement the standardised charge with a scenario analysis for your top 3–5 operational risk events specific to your business model and geography</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Your add-on rationale must stand alone: "We hold X% of Tier 1 for concentration risk because our top-10 exposures represent Y% of portfolio, and under our adverse scenario, stressed losses total Z"</span></div>
+      <div class="examiner-box">
+        <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
+        <div class="examiner-q">"Your IRRBB add-on on page 14 — which rate scenario generated that number? What was your EVE sensitivity? And how does your concentration add-on reflect the real estate sector weight in your book?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- W3 -->
+<div class="weakness" id="w3">
+  <div class="w-header" onclick="tog('w3')">
+    <div class="w-num-col">03</div>
+    <div class="w-title-col">
+      <div class="w-title">The Board owns the signature, not the process</div>
+      <div class="w-sub">Governance is documented but not embedded</div>
+    </div>
+    <div class="w-sev">
+      <span class="sev-badge sev-med">Med–high</span>
+      <div class="w-chevron">▼</div>
+    </div>
+  </div>
+  <div class="w-body">
+    <div class="w-inner">
+      <div class="w-desc">
+        SAMA's ICAAP guidelines are explicit: the Board must own the process, not merely approve the output. In practice, most institutions present a polished 80-page document to the Board Risk Committee three days before the sign-off meeting. The Board approves. The governance box is ticked.
+        <br><br>
+        <strong>SAMA examiners have begun asking Board members direct questions during supervisory reviews.</strong> If a Board member cannot articulate the key stress scenarios, the material risks, or why the capital buffer is set at its current level — that is an immediate finding, regardless of how well the document reads on paper.
+      </div>
+      <div class="fix-head">
+        <div class="fix-diamond">◆</div>
+        <div class="fix-head-text">Remediation</div>
+        <div class="fix-head-line"></div>
+      </div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Involve the Board Risk Committee at the scenario design stage — they should challenge your stress assumptions before models are run, not after numbers are finalised</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Prepare a Board executive summary that is genuinely readable in 20 minutes — key risks, key scenarios, capital headroom under each scenario, and management action triggers</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Run a 30-minute ICAAP briefing for Board members ahead of each approval cycle — not a training session, a structured briefing on the 5 questions SAMA is likely to ask them</span></div>
+      <div class="fix-row"><span class="fix-arrow">→</span><span>Document Board challenge specifically in committee minutes — questions raised, management responses given, and any resulting changes to assumptions. This is the evidence trail SAMA looks for</span></div>
+      <div class="examiner-box">
+        <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
+        <div class="examiner-q">"If we were to speak separately with your Board Risk Committee Chair, could they walk us through your three stress scenarios and explain the capital implications of your adverse case?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="closing-wrap">
+  <div class="closing">
+    <div class="closing-title">The underlying pattern</div>
+    <p>All three weaknesses share the same root cause: the ICAAP is treated as a <strong>regulatory submission</strong> rather than a genuine management tool.</p>
+    <p>The institutions that receive the cleanest SAMA supervisory reviews are the ones where the CRO can walk into the examination discussion without the document — because the numbers and narratives are alive in how the bank is actually run, not archived in a PDF that surfaces once a year.</p>
+    <p>That is the standard worth building towards. And it begins with the quality of the conversation between Risk, Finance, and the Board — long before the document is written.</p>
+  </div>
+</div>
+
+<!-- FOOTER DISCLAIMER -->
+<div class="footer-disclaimer">
+  <strong>Disclaimer:</strong> The views expressed in this article are solely my own and do not represent, reflect or constitute the views, opinions, or positions of my current or any past employer. This content is intended for professional knowledge-sharing purposes only.
+</div>
+
+<!-- HASHTAGS -->
+<div class="hashtags">
+  #ICAAP &nbsp;#Pillar2 &nbsp;#SAMA &nbsp;#BaselIII &nbsp;#BaselIV &nbsp;#CreditRisk &nbsp;#OperationalRisk &nbsp;#LiquidityRisk &nbsp;#KSABanking &nbsp;#RiskManagement &nbsp;#FRM &nbsp;#GCCFinance &nbsp;#Vision2030 &nbsp;#RegulatoryRisk
+</div>
+
+<script>
+/* ─── Progress bar ─── */
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  document.getElementById('prog').style.width =
+    (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+
+/* ─── Self-assessment ─── */
+function toggleAssess() {
+  const trig = document.getElementById('atrig');
+  const body = document.getElementById('abody');
+  trig.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+const fbText = {
+  q1: {
+    g: '<strong>Strong.</strong> Alignment between the ICAAP and the strategic plan is precisely what SAMA expects. Ensure your stress scenarios explicitly test the downside of your specific strategic bets — not just generic macro shocks.',
+    m: '<strong>Partial — a common gap.</strong> "Similar timeframe" is insufficient. Examiners will probe whether macro and growth assumptions are genuinely consistent. A formal joint scenario-setting workshop between Risk and Finance is the standard remediation.',
+    b: '<strong>High-risk finding.</strong> Disconnected documents with separate assumptions is the most frequently cited ICAAP weakness in KSA supervisory reviews. Remediation starts with a governance bridge — formally linking the ICAAP cycle calendar to the strategic planning process.'
+  },
+  q2: {
+    g: '<strong>Strong.</strong> Institution-specific scenarios are the hallmark of a mature ICAAP. Ensure the scenario narratives are fully documented — examiners want to interrogate the logic and methodology, not just validate the capital number.',
+    m: '<strong>Adequate, but improvable.</strong> The internal overlays are the right instinct — ensure they are quantified with a documented methodology, not just described qualitatively. Examiners will ask: "What specific assumption drove the overlay above the regulatory floor?"',
+    b: '<strong>Significant gap.</strong> Using regulatory minimums as Pillar 2 capital is circular reasoning — the floor justifies the floor. You need at least three institution-specific stress scenarios generating defensible, independently derived add-ons.'
+  },
+  q3: {
+    g: '<strong>Strong governance.</strong> This is the benchmark SAMA is moving towards across the sector. Ensure the Board\'s challenge is documented specifically in committee minutes — dates, questions raised, management responses, and any resulting changes to the document.',
+    m: '<strong>Common — but increasingly insufficient.</strong> SAMA has been progressively raising the bar on Board engagement. A presentation at the approval stage means the Board is reviewing conclusions, not assumptions. The fix is earlier, structured involvement at the scenario design stage.',
+    b: '<strong>Governance risk.</strong> SAMA examiners have begun directly questioning Board members during supervisory visits. If a Board member cannot articulate the material risks and stress scenarios in the ICAAP, that is an immediate supervisory finding — regardless of how well the document is written.'
+  }
+};
+
+const answers = {};
+let answeredCount = 0;
+
+function pick(el, qid, type) {
+  const qwrap = el.closest('.q-wrap');
+  qwrap.querySelectorAll('.opt').forEach(o => o.classList.remove('g','b','m'));
+  el.classList.add(type);
+  const fb = document.getElementById('fb-' + qid);
+  if (!answers[qid]) answeredCount++;
+  answers[qid] = type;
+  fb.innerHTML = fbText[qid][type];
+  fb.classList.add('show');
+  if (answeredCount === 3) renderScore();
+}
+
+function renderScore() {
+  const vals = Object.values(answers);
+  const good = vals.filter(v => v === 'g').length;
+  const mid  = vals.filter(v => v === 'm').length;
+  const sb = document.getElementById('scorebox');
+  sb.classList.add('show');
+  document.getElementById('scorenum').textContent = good + '/3';
+  const tiers = [
+    ['Material weaknesses identified', 'Multiple dimensions require remediation. Prioritise connecting the ICAAP to your strategic planning cycle first — it cascades into the other gaps.'],
+    ['Foundations in place, targeted gaps remain', 'Solid base with specific weaknesses. Focus on the lowest-scoring dimension — typically Pillar 2 quantification or Board governance depth.'],
+    ['One area to strengthen to examination standard', 'Strong in two out of three dimensions. Closing the remaining gap brings your ICAAP process to full SAMA supervisory standard.'],
+    ['Examination-ready process', 'Your ICAAP reflects genuine management use, not merely regulatory compliance. The differentiator now is documentation quality — ensuring examiner questions are answered before they are asked.']
+  ];
+  const idx = good === 3 ? 3 : good === 2 ? 2 : mid >= 2 ? 1 : 0;
+  document.getElementById('score-title').textContent  = tiers[idx][0];
+  document.getElementById('score-detail').textContent = tiers[idx][1];
+}
+
+/* ─── Weakness accordion ─── */
+function tog(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.weakness').forEach(w => w.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ─── Scroll reveal ─── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.weakness').forEach(w => obs.observe(w));
+</script>
+</body>
+</html>
