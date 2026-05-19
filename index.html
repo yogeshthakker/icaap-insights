@@ -3,30 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ICAAP Weaknesses in KSA Banks — Risk Management Insight</title>
-<meta name="description" content="Three ICAAP weaknesses SAMA examiners flag most often, and how to fix them. A practical guide for risk professionals in KSA banking.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>Elevating ICAAP Standards in KSA Banks — Global Risk Advisory</title>
+<meta name="description" content="A benchmarking diagnostic for KSA banking risk professionals. Transition your ICAAP from basic regulatory compliance to global best practices (PRA, Fed, APRA, DFSA).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+
 <style>
+/* ═══════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --green:        #00612C;
-  --green-deep:  #004520;
-  --green-light: #E8F2EC;
-  --green-mid:   #C2DBCb;
-  --gold:        #C8992A;
-  --gold-light:  #F5EDD4;
-  --gold-deep:   #8A6718;
-  --parchment:   #F7F4EE;
-  --parchment-2: #EDE9DF;
+  --green-deep:   #004520;
+  --green-dark:   #002E15;
+  --green-light:  #E8F2EC;
+  --green-mid:    #C2DBCB;
+  --gold:         #C8992A;
+  --gold-light:   #F5EDD4;
+  --gold-deep:    #8A6718;
+  --gold-pale:    #FAF5E6;
+  --parchment:    #F7F4EE;
+  --parchment-2:  #EDE9DF;
   --ink:          #1A1A1A;
-  --ink-2:       #3D3D3D;
-  --ink-3:       #6B6B6B;
-  --border:      #D4C89A;
-  --border-light:#E8E2D0;
-  --white:       #FFFFFF;
+  --ink-2:        #3D3D3D;
+  --ink-3:        #6B6B6B;
+  --border:       #D4C89A;
+  --border-light: #E8E2D0;
+  --white:        #FFFFFF;
   --red:          #8B1A1A;
+  --red-light:    #FEF0F0;
   --amber:        #7A4800;
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:    0 4px 18px rgba(0,0,0,0.08);
+  --shadow-green: 0 4px 22px rgba(0,97,44,0.10);
+  --radius:       6px;
+  --radius-sm:    4px;
 }
 
 html { scroll-behavior: smooth; }
@@ -37,94 +51,101 @@ body {
   color: var(--ink);
   min-height: 100vh;
   font-weight: 300;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── READING PROGRESS ─── */
+/* ═══════════════════════════════════════════
+   READING PROGRESS BAR
+═══════════════════════════════════════════ */
 .progress-wrap {
   position: fixed; top: 0; left: 0; right: 0;
   height: 3px; background: var(--border-light);
-  z-index: 999;
+  z-index: 1000;
+  will-change: transform;
 }
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--green), var(--gold));
-  width: 0; transition: width 0.08s linear;
+  width: 0%;
+  transition: width 0.08s linear;
+  will-change: width;
 }
 
-/* ─── HEADER ─── */
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
 header {
-  background: var(--green-deep);
+  background: var(--green-dark);
   position: relative;
   overflow: hidden;
-  padding: 0;
 }
 
+/* Geometric background pattern */
 .header-geo {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  position: absolute; inset: 0;
+  pointer-events: none; overflow: hidden;
 }
-.geo-circle-1 {
+.geo-c1 {
   position: absolute; right: -60px; top: -60px;
-  width: 260px; height: 260px; border-radius: 50%;
-  border: 1px solid rgba(200,153,42,0.15);
+  width: 280px; height: 280px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.12);
 }
-.geo-circle-2 {
-  position: absolute; right: 20px; top: -20px;
+.geo-c2 {
+  position: absolute; right: 30px; top: -10px;
+  width: 170px; height: 170px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.08);
+}
+.geo-c3 {
+  position: absolute; left: -40px; bottom: -40px;
   width: 160px; height: 160px; border-radius: 50%;
-  border: 1px solid rgba(200,153,42,0.1);
+  border: 1px solid rgba(200,153,42,0.06);
 }
 .geo-line {
   position: absolute; bottom: 0; left: 0; right: 0;
-  height: 1px; background: rgba(200,153,42,0.3);
+  height: 1px; background: rgba(200,153,42,0.25);
 }
 .geo-pattern {
-  position: absolute; left: -20px; bottom: -20px;
-  width: 120px; height: 120px;
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 220px;
   background-image: repeating-linear-gradient(
-    45deg,
-    rgba(200,153,42,0.05) 0px,
-    rgba(200,153,42,0.05) 1px,
+    -45deg,
+    rgba(200,153,42,0.03) 0px,
+    rgba(200,153,42,0.03) 1px,
     transparent 1px,
-    transparent 8px
+    transparent 10px
   );
 }
 
 .header-inner {
   position: relative; z-index: 1;
-  padding: 36px 40px 32px;
-  max-width: 760px;
+  padding: 28px 40px 26px;
+  max-width: 860px;
 }
 
 .header-eyebrow {
   display: flex; align-items: center; gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   opacity: 0; animation: riseIn 0.6s ease forwards 0.1s;
 }
-.eyebrow-line {
-  width: 24px; height: 1px; background: var(--gold);
-}
+.eyebrow-line { width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
 .eyebrow-text {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+  font-size: 9.5px; font-weight: 600; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--gold);
 }
 
 .header-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(26px, 5vw, 40px);
-  font-weight: 600;
-  color: var(--white);
-  line-height: 1.2;
-  margin-bottom: 20px;
+  font-size: clamp(20px, 3.6vw, 30px);
+  font-weight: 600; color: var(--white);
+  line-height: 1.28; margin-bottom: 14px;
   opacity: 0; animation: riseIn 0.6s ease forwards 0.25s;
 }
-.header-title em {
-  color: var(--gold);
-  font-style: italic;
-}
+.header-title em { color: var(--gold); font-style: italic; }
 
 .header-divider {
-  width: 48px; height: 2px;
+  width: 56px; height: 1.5px;
   background: linear-gradient(90deg, var(--gold), transparent);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   opacity: 0; animation: riseIn 0.6s ease forwards 0.35s;
 }
 
@@ -135,737 +156,1386 @@ header {
 .author-avatar {
   width: 38px; height: 38px; border-radius: 50%;
   background: linear-gradient(135deg, var(--green), var(--gold-deep));
-  border: 1.5px solid rgba(200,153,42,0.4);
+  border: 1.5px solid rgba(200,153,42,0.45);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 16px; font-weight: 600; color: var(--gold-light);
-  flex-shrink: 0;
+  font-size: 15px; font-weight: 700; color: var(--gold-light);
+  flex-shrink: 0; letter-spacing: 0.02em;
 }
-.author-info { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-.author-info strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.author-info { font-size: 12px; color: rgba(255,255,255,0.60); line-height: 1.55; }
+.author-info strong { color: rgba(255,255,255,0.88); font-weight: 500; }
 
-/* ─── DISCLAIMER ─── */
+/* ═══════════════════════════════════════════
+   TOP DISCLAIMER BANNER
+═══════════════════════════════════════════ */
 .disclaimer {
   background: var(--gold-light);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 10px 40px;
-  font-size: 11px;
-  color: var(--gold-deep);
-  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: var(--gold-deep);
+  display: flex; align-items: flex-start; gap: 10px;
   opacity: 0; animation: riseIn 0.5s ease forwards 0.55s;
+  line-height: 1.55;
 }
-.disclaimer-icon { font-size: 12px; flex-shrink: 0; }
+.disclaimer-icon { flex-shrink: 0; margin-top: 1px; }
 
-/* ─── INTRO STYLING ─── */
+/* ═══════════════════════════════════════════
+   INTRO
+═══════════════════════════════════════════ */
 .intro {
-  padding: 30px 40px 10px;
-  max-width: 800px;
+  padding: 28px 40px 12px;
+  max-width: 860px;
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.6s;
 }
 .intro p {
-  font-size: 14.5px;
-  line-height: 1.8;
-  color: var(--ink-2);
-  margin-bottom: 16px;
+  font-size: 14.5px; line-height: 1.82;
+  color: var(--ink-2); margin-bottom: 14px;
 }
-.intro strong {
-  color: var(--ink);
-  font-weight: 500;
-}
+.intro p:last-child { margin-bottom: 0; }
+.intro strong { color: var(--ink); font-weight: 500; }
+.intro em { color: var(--green); font-style: italic; }
 
-/* ─── SELF ASSESSMENT INTERACTIVE PANEL ─── */
-.assess-wrap {
-  margin: 20px 40px;
+/* ═══════════════════════════════════════════
+   KSA CONTEXT CALLOUT
+═══════════════════════════════════════════ */
+.ksa-callout {
+  margin: 20px 40px 0;
+  background: var(--green-light);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 18px;
+  display: flex; gap: 12px; align-items: flex-start;
+  opacity: 0; animation: riseIn 0.5s ease forwards 0.7s;
+}
+.ksa-callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.ksa-callout-text { font-size: 13px; color: var(--green-deep); line-height: 1.65; }
+.ksa-callout-text strong { font-weight: 600; display: block; margin-bottom: 3px; }
+
+/* ═══════════════════════════════════════════
+   DIAGNOSTIC WRAPPER
+═══════════════════════════════════════════ */
+.diag-wrap {
+  margin: 24px 40px 0;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: var(--white);
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  box-shadow: var(--shadow-sm);
+  opacity: 0; animation: riseIn 0.6s ease forwards 0.75s;
 }
-.assess-trigger {
-  display: flex;
-  align-items: center;
-  padding: 18px 20px;
+
+/* Trigger bar */
+.diag-trigger {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 22px;
   background: var(--gold-light);
   cursor: pointer;
-  gap: 14px;
   border-bottom: 1px solid var(--border-light);
+  transition: background 0.15s;
+  user-select: none;
 }
-.assess-icon-wrap { font-size: 20px; }
-.assess-trigger-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.diag-trigger:hover { background: #F0E9C8; }
+.diag-trigger:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: -2px;
 }
-.assess-trigger-text strong {
-  font-size: 14px;
-  color: var(--green-deep);
-  font-weight: 600;
+.diag-icon { font-size: 20px; flex-shrink: 0; }
+.diag-trigger-text { flex: 1; }
+.diag-trigger-text strong {
+  display: block; font-size: 14px; font-weight: 600;
+  color: var(--green-deep); margin-bottom: 2px;
 }
-.assess-trigger-text span {
-  font-size: 11.5px;
-  color: var(--gold-deep);
+.diag-trigger-text span { font-size: 11.5px; color: var(--gold-deep); }
+
+/* Progress counter */
+.diag-progress-wrap {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
 }
-.assess-caret {
-  font-size: 10px;
-  color: var(--gold-deep);
-  transition: transform 0.25s;
+.diag-progress-text {
+  font-size: 11px; font-weight: 600; color: var(--green-deep);
+  white-space: nowrap;
 }
-.assess-trigger.open .assess-caret {
-  transform: rotate(180deg);
+.diag-progress-dots {
+  display: flex; gap: 4px;
 }
-.assess-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
+.diag-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border); border: 1.5px solid var(--border);
+  transition: background 0.2s, border-color 0.2s;
 }
-.assess-body.open {
-  max-height: 2500px;
+.diag-dot.answered { background: var(--green); border-color: var(--green); }
+.diag-caret {
+  font-size: 10px; color: var(--gold-deep);
+  transition: transform 0.25s ease; flex-shrink: 0;
 }
-.q-wrap {
-  padding: 24px 20px;
+.diag-trigger.open .diag-caret { transform: rotate(180deg); }
+
+/* Body */
+.diag-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.diag-body.open { max-height: 4000px; }
+
+/* Individual question */
+.q-block {
+  padding: 20px 22px;
   border-bottom: 1px solid var(--parchment-2);
 }
-.q-wrap:last-child {
-  border-bottom: none;
-}
-.q-text {
-  font-size: 14.5px;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 16px;
-  display: flex;
-  gap: 10px;
-  line-height: 1.5;
+.q-block:last-of-type { border-bottom: none; }
+
+.q-header {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 14px;
 }
 .q-num {
-  background: var(--green-light);
-  color: var(--green);
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 600;
-  flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--green-light); color: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+  margin-top: 1px;
 }
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.q-text {
+  font-size: 14px; font-weight: 600; color: var(--ink);
+  line-height: 1.45;
 }
-.opt {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
-  border: 1px solid var(--border-light);
-  border-radius: 4px;
-  font-size: 13.5px;
-  color: var(--ink-2);
+
+/* Native radio options — accessible */
+.options { display: flex; flex-direction: column; gap: 9px; }
+
+.opt-label {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
-  line-height: 1.5;
-}
-.opt:hover {
+  font-size: 13px; color: var(--ink-2);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
   background: var(--parchment);
-  border-color: var(--border);
+  line-height: 1.55;
 }
-.radio {
-  width: 16px;
-  height: 16px;
-  border: 1px solid var(--ink-3);
-  border-radius: 50%;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.opt-label:hover {
+  border-color: var(--green-mid);
+  background: var(--green-light);
+  color: var(--green-deep);
+}
+.opt-label:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 1px;
+}
+
+/* Hide native radio visually but keep accessible */
+.opt-radio {
+  position: absolute; opacity: 0; width: 0; height: 0;
+}
+
+/* Custom visual radio ring */
+.opt-ring {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid var(--ink-3);
   background: var(--white);
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s;
 }
-.radio-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.opt-dot {
+  width: 8px; height: 8px; border-radius: 50%;
   background: transparent;
   transform: scale(0);
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s;
 }
 
-/* Choice states applied by JS */
-.opt.g { border-color: var(--green); background: var(--green-light); color: var(--green-deep); }
-.opt.g .radio { border-color: var(--green); }
-.opt.g .radio-dot { background: var(--green); transform: scale(1); }
+/* States: Good / Mid / Bad */
+.opt-label.g {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: var(--green-deep);
+}
+.opt-label.g .opt-ring { border-color: var(--green); }
+.opt-label.g .opt-dot  { background: var(--green); transform: scale(1); }
 
-.opt.m { border-color: var(--gold); background: #FAF5E6; color: var(--gold-deep); }
-.opt.m .radio { border-color: var(--gold); }
-.opt.m .radio-dot { background: var(--gold); transform: scale(1); }
+.opt-label.m {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+  color: var(--gold-deep);
+}
+.opt-label.m .opt-ring { border-color: var(--gold); }
+.opt-label.m .opt-dot  { background: var(--gold); transform: scale(1); }
 
-.opt.b { border-color: var(--red); background: #FEF0F0; color: var(--red); }
-.opt.b .radio { border-color: var(--red); }
-.opt.b .radio-dot { background: var(--red); transform: scale(1); }
+.opt-label.b {
+  border-color: var(--red);
+  background: var(--red-light);
+  color: var(--red);
+}
+.opt-label.b .opt-ring { border-color: var(--red); }
+.opt-label.b .opt-dot  { background: var(--red); transform: scale(1); }
 
+/* Feedback block */
 .q-feedback {
   display: none;
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 4px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  border-left: 3px solid var(--border);
+  margin-top: 12px; padding: 12px 16px;
   background: var(--parchment);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 13px; color: var(--ink-2); line-height: 1.65;
 }
 .q-feedback.show { display: block; }
+.q-feedback strong { color: var(--ink); font-weight: 600; }
+.q-feedback.fb-g { border-left-color: var(--green); }
+.q-feedback.fb-m { border-left-color: var(--gold); }
+.q-feedback.fb-b { border-left-color: var(--red); }
 
-/* Diagnostic Scoring Panel */
+/* Reset button inside diagnostic */
+.diag-reset-row {
+  display: none;
+  padding: 12px 22px 14px;
+  border-top: 1px solid var(--parchment-2);
+  background: var(--parchment);
+  justify-content: flex-end;
+}
+.diag-reset-row.show { display: flex; }
+.btn-reset {
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 500; color: var(--ink-3);
+  cursor: pointer; font-family: inherit;
+  transition: border-color 0.15s, color 0.15s;
+}
+.btn-reset:hover { border-color: var(--green); color: var(--green); }
+.btn-reset:focus-visible {
+  outline: 2px solid var(--green); outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   SCORE BOX
+═══════════════════════════════════════════ */
 .score-box {
   display: none;
-  margin: 20px 40px;
-  border: 2px solid var(--green);
+  margin: 20px 40px 0;
+  border: 1.5px solid var(--green);
   background: var(--white);
-  border-radius: 6px;
-  padding: 24px;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 4px 20px rgba(0,97,44,0.08);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  align-items: center; gap: 22px;
+  box-shadow: var(--shadow-green);
 }
 .score-box.show { display: flex; }
+
+.score-visual {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
 .score-big {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 44px;
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1;
-  min-width: 70px;
-  text-align: center;
+  font-size: 48px; font-weight: 700;
+  color: var(--green); line-height: 1;
 }
-.score-desc {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.score-desc strong { font-size: 15px; color: var(--green-deep); font-weight: 600; }
-.score-desc span { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
-
-/* ─── DYNAMICALLY GATED CONTENT SECTION ─── */
-.gated-content {
-  display: none; /* Controlled entirely by Diagnostic completion */
-}
-.gated-content.show {
-  display: block;
+.score-label-sm {
+  font-size: 9px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-3);
 }
 
-/* ─── SECTION LABEL ─── */
+/* Score meter */
+.score-meter {
+  width: 56px; height: 4px;
+  background: var(--border-light); border-radius: 2px; margin-top: 4px;
+}
+.score-meter-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  transition: width 0.6s ease;
+}
+
+.score-divider {
+  width: 1px; height: 52px; background: var(--border-light); flex-shrink: 0;
+}
+.score-desc strong {
+  display: block; font-size: 14px; font-weight: 600;
+  color: var(--green-deep); margin-bottom: 6px;
+}
+.score-desc span {
+  font-size: 13px; color: var(--ink-2); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   GATED CONTENT
+═══════════════════════════════════════════ */
+.gated-content { display: none; }
+.gated-content.show { display: block; }
+
+/* Advisory pitch banner */
+.advisory-banner {
+  margin: 28px 40px 0;
+  background: linear-gradient(135deg, var(--green-deep), var(--green-dark));
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  position: relative; overflow: hidden;
+}
+.advisory-banner::after {
+  content: '';
+  position: absolute; right: -20px; top: -20px;
+  width: 120px; height: 120px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.15);
+  pointer-events: none;
+}
+.advisory-banner h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--gold); margin-bottom: 8px; position: relative;
+}
+.advisory-banner p {
+  font-size: 13.5px; line-height: 1.72;
+  color: rgba(255,255,255,0.82); position: relative;
+}
+
+/* Section heading */
 .section-head {
-  padding: 40px 40px 16px;
+  padding: 30px 40px 16px;
   display: flex; align-items: center; gap: 14px;
 }
-.section-head-line { flex: 1; height: 1px; background: var(--border-light); }
 .section-head-text {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--green-deep);
   white-space: nowrap;
 }
+.section-head-line { flex: 1; height: 1px; background: var(--border-light); }
 
-/* ─── WEAKNESS CARDS ─── */
-.weakness {
+/* ═══════════════════════════════════════════
+   PILLAR ACCORDION CARDS
+═══════════════════════════════════════════ */
+.pillar {
   margin: 0 40px 12px;
   border: 1px solid var(--border-light);
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: var(--white);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s;
 }
-.weakness:hover { box-shadow: 0 4px 20px rgba(0,97,44,0.07); }
+.pillar:hover { box-shadow: var(--shadow-green); }
+.pillar:focus-within { box-shadow: 0 0 0 2px var(--green); }
 
-.w-header {
-  display: flex; align-items: flex-start; gap: 0;
+/* Pillar header */
+.p-header {
+  display: flex; align-items: stretch;
   cursor: pointer;
+  transition: background 0.15s;
 }
+.p-header:hover .p-title-col { background: var(--parchment); }
 
-.w-num-col {
+/* Number column */
+.p-num {
   width: 56px; flex-shrink: 0;
-  padding: 18px 0 18px 20px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px 0;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 32px; font-weight: 600; line-height: 1;
-  color: var(--border);
-  transition: color 0.2s;
+  font-size: 30px; font-weight: 700; line-height: 1;
+  color: var(--border-light);
+  border-right: 1px solid var(--border-light);
+  transition: color 0.2s, background 0.2s;
+  background: var(--parchment);
 }
-.weakness.open .w-num-col { color: var(--green); }
+.pillar.open .p-num {
+  color: var(--white);
+  background: var(--green);
+  border-right-color: var(--green);
+}
 
-.w-title-col {
-  flex: 1; padding: 18px 16px 18px 0;
+/* Title block */
+.p-title-col {
+  flex: 1; padding: 16px 16px 16px 18px;
+  transition: background 0.15s;
 }
-.w-title {
-  font-size: 14px; font-weight: 500; color: var(--ink);
+.p-title {
+  font-size: 14px; font-weight: 600; color: var(--ink);
   line-height: 1.4; margin-bottom: 3px;
 }
-.w-sub { font-size: 11.5px; color: var(--ink-3); }
+.p-sub { font-size: 11.5px; color: var(--ink-3); }
 
-.w-sev {
-  padding: 18px 16px 18px 0;
-  display: flex; flex-direction: column; align-items: flex-end;
-  gap: 6px; flex-shrink: 0;
+/* Chevron */
+.p-caret-col {
+  display: flex; align-items: center; padding: 0 18px;
+  flex-shrink: 0;
 }
-.sev-badge {
-  font-size: 9.5px; font-weight: 500; letter-spacing: 0.06em;
-  text-transform: uppercase; padding: 2px 8px;
-  border-radius: 20px;
-}
-.sev-high { background: #FEF0F0; color: var(--red); border: 1px solid #F0CCCC; }
-.sev-med  { background: #FDF6EA; color: var(--amber); border: 1px solid #E8D0A0; }
-.w-chevron {
+.p-caret {
   font-size: 10px; color: var(--ink-3);
-  transition: transform 0.25s; margin-top: 2px;
+  transition: transform 0.25s ease;
 }
-.weakness.open .w-chevron { transform: rotate(180deg); }
+.pillar.open .p-caret { transform: rotate(180deg); }
 
-.w-body { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
-.weakness.open .w-body { max-height: 1100px; }
+/* Body */
+.p-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+.pillar.open .p-body { max-height: 1600px; }
 
-.w-inner {
-  padding: 18px 20px 20px;
+.p-inner {
+  padding: 20px 24px 24px;
   border-top: 1px solid var(--parchment-2);
 }
 
-.w-desc {
+/* Description */
+.p-desc {
   font-size: 13.5px; line-height: 1.82;
   color: var(--ink-2); margin-bottom: 18px;
 }
-.w-desc strong { color: var(--ink); font-weight: 500; }
+.p-desc strong { color: var(--ink); font-weight: 600; }
 
+/* Global benchmark box */
+.benchmark-box {
+  background: var(--parchment);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px; margin-bottom: 18px;
+}
+.bench-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.11em;
+  text-transform: uppercase; color: var(--gold-deep);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.bench-text {
+  font-size: 13px; line-height: 1.72; color: var(--ink-2);
+}
+.bench-text strong { color: var(--green-deep); font-weight: 600; }
+
+/* Remediation roadmap */
 .fix-head {
-  display: flex; align-items: center; gap: 8px;
-  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
 }
 .fix-head-line { flex: 1; height: 1px; background: var(--border-light); }
 .fix-head-text {
-  font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--green);
-  white-space: nowrap;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--green); white-space: nowrap;
 }
 .fix-diamond { color: var(--gold); font-size: 9px; }
 
 .fix-row {
-  display: flex; gap: 10px; align-items: flex-start;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--parchment-2);
-  font-size: 13px; color: var(--ink-2); line-height: 1.65;
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 8px 0; border-bottom: 1px solid var(--parchment-2);
+  font-size: 13px; color: var(--ink-2); line-height: 1.7;
 }
-.fix-row:last-child { border-bottom: none; }
-.fix-arrow {
-  color: var(--green); flex-shrink: 0;
-  font-size: 11px; margin-top: 3px; font-weight: 500;
-}
+.fix-row:last-of-type { border-bottom: none; }
+.fix-arr { color: var(--green); flex-shrink: 0; font-size: 11px; margin-top: 3px; font-weight: 700; }
 
+/* Advisory capabilities box */
+.advisory-box {
+  margin-top: 18px;
+  background: var(--gold-pale);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm); padding: 14px 16px;
+}
+.advisory-box-label {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--green-deep); margin-bottom: 6px;
+}
+.advisory-box-text { font-size: 13px; color: var(--ink); line-height: 1.65; }
+
+/* Examiner question */
 .examiner-box {
-  margin-top: 16px;
-  background: var(--green-deep);
-  border-radius: 4px;
-  padding: 13px 16px;
+  margin-top: 16px; background: var(--green-deep);
+  border-radius: var(--radius-sm); padding: 14px 18px;
 }
 .examiner-label {
-  font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 6px;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
 }
 .examiner-q {
-  font-size: 12.5px; color: rgba(255,255,255,0.8);
-  line-height: 1.65; font-style: italic;
+  font-size: 13px; color: rgba(255,255,255,0.85);
+  line-height: 1.72; font-style: italic;
 }
 
-/* ─── CLOSING ─── */
-.closing-wrap {
-  padding: 28px 40px 12px;
-}
+/* ═══════════════════════════════════════════
+   CLOSING SECTION
+═══════════════════════════════════════════ */
+.closing-wrap { padding: 28px 40px 18px; }
 .closing {
   background: var(--green);
-  border-radius: 6px;
-  padding: 24px 28px;
+  border-radius: var(--radius);
+  padding: 26px 30px;
   position: relative; overflow: hidden;
 }
 .closing::before {
   content: '';
   position: absolute; right: -30px; top: -30px;
-  width: 140px; height: 140px; border-radius: 50%;
-  border: 1px solid rgba(200,153,42,0.2);
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.18);
+  pointer-events: none;
+}
+.closing::after {
+  content: '';
+  position: absolute; left: -20px; bottom: -20px;
+  width: 100px; height: 100px; border-radius: 50%;
+  border: 1px solid rgba(200,153,42,0.10);
+  pointer-events: none;
 }
 .closing-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600;
-  color: var(--white); margin-bottom: 10px; position: relative;
+  font-size: 22px; font-weight: 600;
+  color: var(--white); margin-bottom: 12px; position: relative;
 }
 .closing p {
-  font-size: 13.5px; line-height: 1.75;
-  color: rgba(255,255,255,0.75); position: relative;
+  font-size: 13.5px; line-height: 1.8;
+  color: rgba(255,255,255,0.80); position: relative;
 }
 .closing p + p { margin-top: 10px; }
-.closing strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+.closing strong { color: rgba(255,255,255,0.96); font-weight: 600; }
 
-/* ─── FOOTER DISCLAIMER ─── */
+/* ═══════════════════════════════════════════
+   FOOTER DISCLAIMER
+═══════════════════════════════════════════ */
 .footer-disclaimer {
-  margin: 20px 40px 10px;
-  padding: 12px 16px;
-  background: var(--gold-light);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 11px; color: var(--gold-deep);
-  line-height: 1.6;
+  margin: 18px 40px 14px;
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 11px; color: var(--ink-3); line-height: 1.65;
 }
+.footer-disclaimer strong { color: var(--ink-2); font-weight: 600; }
 
-/* ─── HASHTAGS ─── */
+/* ═══════════════════════════════════════════
+   HASHTAGS
+═══════════════════════════════════════════ */
 .hashtags {
-  padding: 8px 40px 40px;
+  padding: 4px 40px 44px;
   font-size: 12px; color: var(--green);
-  line-height: 2.2;
+  line-height: 2.3;
 }
-.hashtags a { color: var(--green); text-decoration: none; margin-right: 4px; }
+.hashtags a {
+  color: var(--green); text-decoration: none;
+  margin-right: 4px; transition: color 0.15s;
+}
 .hashtags a:hover { color: var(--gold-deep); }
 
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
 @keyframes riseIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 600px) {
-  .header-inner, .intro, .assess-wrap,
-  .section-head, .closing-wrap,
-  .footer-disclaimer, .hashtags { padding-left: 20px; padding-right: 20px; }
-  .weakness, .score-box { margin-left: 16px; margin-right: 16px; }
-  .assess-wrap { padding-left: 16px; padding-right: 16px; }
-  .disclaimer { padding-left: 20px; padding-right: 20px; }
-  .score-box { margin-left: 16px; margin-right: 16px; }
+/* Scroll reveal for pillars */
+.pillar {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.2s;
+}
+.pillar.vis { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .header-inner       { padding: 22px 20px 20px; }
+  .disclaimer         { padding: 10px 20px; }
+  .intro              { padding: 22px 20px 10px; }
+  .ksa-callout        { margin-left: 16px; margin-right: 16px; }
+  .diag-wrap          { margin-left: 16px; margin-right: 16px; }
+  .score-box          { margin-left: 16px; margin-right: 16px; flex-direction: column; gap: 14px; }
+  .score-divider      { display: none; }
+  .advisory-banner    { margin-left: 16px; margin-right: 16px; }
+  .section-head       { padding-left: 20px; padding-right: 20px; }
+  .pillar             { margin-left: 16px; margin-right: 16px; }
+  .closing-wrap       { padding-left: 20px; padding-right: 20px; }
+  .footer-disclaimer  { margin-left: 16px; margin-right: 16px; }
+  .hashtags           { padding-left: 20px; padding-right: 20px; }
+  .p-num              { width: 44px; font-size: 24px; }
+  .diag-progress-dots { display: none; }
+}
+
+@media (max-width: 400px) {
+  .header-title { font-size: 18px; }
+  .score-big    { font-size: 40px; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--parchment); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--green-mid); }
+
+/* Print */
+@media print {
+  .progress-wrap { display: none; }
+  .pillar { opacity: 1 !important; transform: none !important; box-shadow: none; }
+  .p-body { max-height: none !important; }
 }
 </style>
 </head>
 <body>
 
-<div class="progress-wrap"><div class="progress-fill" id="prog"></div></div>
+<!-- Reading progress -->
+<div class="progress-wrap" role="progressbar" aria-label="Reading progress">
+  <div class="progress-fill" id="prog"></div>
+</div>
 
-<!-- HEADER -->
+<!-- ═══ HEADER ═══ -->
 <header>
-  <div class="header-geo">
-    <div class="geo-circle-1"></div>
-    <div class="geo-circle-2"></div>
+  <div class="header-geo" aria-hidden="true">
+    <div class="geo-c1"></div>
+    <div class="geo-c2"></div>
+    <div class="geo-c3"></div>
     <div class="geo-line"></div>
     <div class="geo-pattern"></div>
   </div>
   <div class="header-inner">
-    <div class="header-eyebrow">
+    <div class="header-eyebrow" aria-hidden="true">
       <div class="eyebrow-line"></div>
-      <div class="eyebrow-text">ICAAP · Pillar 2 · SAMA · Risk Management</div>
+      <div class="eyebrow-text">Global Risk Benchmarking · KSA Banking Sector</div>
     </div>
     <h1 class="header-title">
-      The <em>3 ICAAP weaknesses</em><br>
-      SAMA examiners flag most often —<br>
-      and how to fix them
+      Aligning ICAAP frameworks with <em>Global Best Practices</em>:<br>
+      A strategic diagnostic for KSA Financial Institutions
     </h1>
-    <div class="header-divider"></div>
+    <div class="header-divider" aria-hidden="true"></div>
     <div class="author-row">
-      <div class="author-avatar">Y</div>
+      <div class="author-avatar" aria-hidden="true">RM</div>
       <div class="author-info">
-        <strong>Senior Risk Professional · FRM® · SCR®</strong>
-        15+ years · Basel III · SAMA · Credit, Liquidity &amp; Operational Risk
+        <strong>Enterprise Risk Management &amp; Regulatory Capital Advisory</strong>
+        Benchmarking against PRA (UK) · Federal Reserve (US) · APRA (Australia) · DFSA
       </div>
     </div>
   </div>
 </header>
 
-<!-- TOP DISCLAIMER -->
-<div class="disclaimer">
-  <span class="disclaimer-icon">◆</span>
-  <span>The views expressed in this article are solely my own and do not represent, reflect or constitute the views, opinions or positions of my current or any past employer.</span>
+<!-- Top disclaimer -->
+<div class="disclaimer" role="note">
+  <span class="disclaimer-icon" aria-hidden="true">◆</span>
+  <span>The views expressed are solely the author's own and do not represent, reflect or constitute the views, opinions or positions of any current or past employer. Benchmarks are anchored to publicly available international supervisory frameworks.</span>
 </div>
 
-<!-- INTRO -->
+<!-- ═══ INTRO ═══ -->
 <div class="intro">
-  <p>I have sat across from SAMA examiners more than once. And I have reviewed ICAAP documents from institutions that clearly understood the <em>structure</em> of the process — but not the <em>substance</em>.</p>
-  <p>The result is always the same: a document that looks complete, but fails to answer the question the regulator is actually asking: <strong>"Do you truly understand your own risk — or have you documented what you think we want to see?"</strong></p>
-  <p>Complete the brief validation assessment below to instantly benchmark your process against SAMA supervisory expectations and open the tailored core remediation plan.</p>
+  <p>As the Saudi banking sector scales under <strong>Vision 2030</strong>, supervisory expectations are rapidly shifting from structural compliance to deep, data-driven methodology challenge. A well-structured ICAAP document is no longer sufficient — the modern standard demands that KSA institutions mirror the analytical rigour practiced in London, New York, Sydney and Dubai.</p>
+  <p>Too often, compliance exercises drift into predictable habits: generic top-down risk metrics, linear stress scenarios, and retrospective capital calculations rather than forward-looking risk steering tools. <strong>True risk maturation requires a deliberate transition from compliance checklist to execution capital optimisation.</strong></p>
+  <p>Complete the five-pillar diagnostic below to evaluate your institution's risk architecture against international best practices and explore the end-to-end remediation blueprint.</p>
 </div>
 
-<!-- SELF ASSESSMENT -->
-<div class="assess-wrap">
-  <div class="assess-trigger open" id="atrig" onclick="toggleAssess()">
-    <div class="assess-icon-wrap">📋</div>
-    <div class="assess-trigger-text">
-      <strong>Self-assessment: How does your ICAAP hold up?</strong>
-      <span>3 questions · 60 seconds · Scored diagnostic with feedback</span>
-    </div>
-    <div class="assess-caret" id="acaret">▼</div>
-  </div>
-  <div class="assess-body open" id="abody">
-    <div class="q-wrap">
-      <div class="q-text"><span class="q-num">1</span>Your ICAAP capital projections for the next 3 years — how closely do they align with your strategic business plan?</div>
-      <div class="options">
-        <div class="opt" onclick="pick(this,'q1','g')"><div class="radio"><div class="radio-dot"></div></div>Directly linked — same assumptions, same macro scenarios, reviewed jointly by Risk and Finance</div>
-        <div class="opt" onclick="pick(this,'q1','m')"><div class="radio"><div class="radio-dot"></div></div>Loosely connected — similar timeframe but built by different teams with different assumptions</div>
-        <div class="opt" onclick="pick(this,'q1','b')"><div class="radio"><div class="radio-dot"></div></div>Separate exercises — Risk and Finance work independently; the ICAAP and business plan are not reconciled</div>
-      </div>
-      <div class="q-feedback" id="fb-q1"></div>
-    </div>
-    <div class="q-wrap">
-      <div class="q-text"><span class="q-num">2</span>Your Pillar 2 capital add-ons — are they derived from internal stress scenarios specific to your institution, or from regulatory floors?</div>
-      <div class="options">
-        <div class="opt" onclick="pick(this,'q2','g')"><div class="radio"><div class="radio-dot"></div></div>Our own scenarios — institution-specific risks, bespoke stress assumptions, not anchored to regulatory minimums</div>
-        <div class="opt" onclick="pick(this,'q2','m')"><div class="radio"><div class="radio-dot"></div></div>Hybrid — regulatory floors with some internal overlays, partially quantified</div>
-        <div class="opt" onclick="pick(this,'q2','b')"><div class="radio"><div class="radio-dot"></div></div>Primarily regulatory minimums — we have not run bespoke internal stress scenarios to generate the add-ons</div>
-      </div>
-      <div class="q-feedback" id="fb-q2"></div>
-    </div>
-    <div class="q-wrap">
-      <div class="q-text"><span class="q-num">3</span>Your Board's involvement in the ICAAP process — which best describes it?</div>
-      <div class="options">
-        <div class="opt" onclick="pick(this,'q3','g')"><div class="radio"><div class="radio-dot"></div></div>The Board reviews assumptions and challenges scenarios at the design stage — not just the final document</div>
-        <div class="opt" onclick="pick(this,'q3','m')"><div class="radio"><div class="radio-dot"></div></div>The Board receives a summary presentation and formally approves the final submission</div>
-        <div class="opt" onclick="pick(this,'q3','b')"><div class="radio"><div class="radio-dot"></div></div>The Board signs off — detailed review is done at senior management level only</div>
-      </div>
-      <div class="q-feedback" id="fb-q3"></div>
-    </div>
+<!-- KSA context callout -->
+<div class="ksa-callout" role="note">
+  <span class="ksa-callout-icon" aria-hidden="true">🇸🇦</span>
+  <div class="ksa-callout-text">
+    <strong>Why this matters specifically in KSA right now</strong>
+    SAMA's supervisory intensity is increasing materially. Institutions that proactively adopt global-standard risk frameworks gain a measurable advantage in credit ratings, correspondent banking relationships, and regulatory standing — before their peers are compelled to do the same.
   </div>
 </div>
 
-<!-- DIAGNOSTIC OVERVIEW SCORE PANEL -->
-<div class="score-box" id="scorebox">
-  <div class="score-big" id="scorenum">—</div>
+<!-- ═══ DIAGNOSTIC ═══ -->
+<div class="diag-wrap" id="diagWrap">
+
+  <!-- Trigger bar — accessible button -->
+  <div class="diag-trigger open" id="diagTrig"
+       role="button" tabindex="0" aria-expanded="true"
+       aria-controls="diagBody"
+       onclick="toggleDiag()"
+       onkeydown="if(event.key==='Enter'||event.key===' '){toggleDiag();event.preventDefault();}">
+    <div class="diag-icon" aria-hidden="true">📋</div>
+    <div class="diag-trigger-text">
+      <strong>Global Best Practice Diagnostic Matrix</strong>
+      <span>5 Pillars · 90 Seconds · Institutional Risk Readiness Score</span>
+    </div>
+    <div class="diag-progress-wrap">
+      <span class="diag-progress-text" id="progText">0 / 5</span>
+      <div class="diag-progress-dots" aria-hidden="true" id="progDots">
+        <div class="diag-dot" id="d1"></div>
+        <div class="diag-dot" id="d2"></div>
+        <div class="diag-dot" id="d3"></div>
+        <div class="diag-dot" id="d4"></div>
+        <div class="diag-dot" id="d5"></div>
+      </div>
+      <span class="diag-caret" aria-hidden="true" id="diagCaret">▼</span>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="diag-body open" id="diagBody">
+
+    <!-- Q1 -->
+    <div class="q-block">
+      <div class="q-header">
+        <div class="q-num" aria-hidden="true">1</div>
+        <div class="q-text">Risk Identification &amp; Materiality — Risk ID Engine</div>
+      </div>
+      <fieldset class="options" aria-label="Question 1 options">
+        <legend class="sr-only">Risk Identification approach</legend>
+
+        <label class="opt-label" id="q1-g">
+          <input class="opt-radio" type="radio" name="q1" value="g" onchange="pick('q1','g')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Dynamic Bottom-Up:</strong> Risk ID operates independently of the prior year's framework. Quantified materiality thresholds filter directly into a live Risk Inventory tracking emerging exposures.</span>
+        </label>
+
+        <label class="opt-label" id="q1-m">
+          <input class="opt-radio" type="radio" name="q1" value="m" onchange="pick('q1','m')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Hybrid Framework:</strong> A standard Risk Register exists, updated semi-annually via business line surveys, but the link to materiality thresholds remains informal.</span>
+        </label>
+
+        <label class="opt-label" id="q1-b">
+          <input class="opt-radio" type="radio" name="q1" value="b" onchange="pick('q1','b')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Static Document:</strong> The ICAAP relies on a top-down risk matrix that remains largely identical year-over-year, capturing mostly generic macro categories.</span>
+        </label>
+      </fieldset>
+      <div class="q-feedback" id="fb-q1" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block">
+      <div class="q-header">
+        <div class="q-num" aria-hidden="true">2</div>
+        <div class="q-text">Stress Testing Realism &amp; Scenario Design</div>
+      </div>
+      <fieldset class="options" aria-label="Question 2 options">
+        <legend class="sr-only">Stress testing approach</legend>
+
+        <label class="opt-label" id="q2-g">
+          <input class="opt-radio" type="radio" name="q2" value="g" onchange="pick('q2','g')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Bespoke &amp; Severe Non-Linear:</strong> Scenarios test deep, idiosyncratic, non-linear events backed by comprehensive reverse stress testing that pushes capital thresholds to breaking point.</span>
+        </label>
+
+        <label class="opt-label" id="q2-m">
+          <input class="opt-radio" type="radio" name="q2" value="m" onchange="pick('q2','m')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Standard Macro Shifts:</strong> Scenarios use historical baseline data to simulate linear shifts — standard oil price shocks or generic GDP deceleration curves.</span>
+        </label>
+
+        <label class="opt-label" id="q2-b">
+          <input class="opt-radio" type="radio" name="q2" value="b" onchange="pick('q2','b')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Compliance Driven:</strong> A single, mild regulatory minimum shock overlay, designed primarily to fulfil baseline submission expectations.</span>
+        </label>
+      </fieldset>
+      <div class="q-feedback" id="fb-q2" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-block">
+      <div class="q-header">
+        <div class="q-num" aria-hidden="true">3</div>
+        <div class="q-text">Pillar 2 Capital Quantification Mechanics</div>
+      </div>
+      <fieldset class="options" aria-label="Question 3 options">
+        <legend class="sr-only">Pillar 2 capital approach</legend>
+
+        <label class="opt-label" id="q3-g">
+          <input class="opt-radio" type="radio" name="q3" value="g" onchange="pick('q3','g')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Independent Attribution:</strong> Advanced internal models quantify specific risks independently — granular HHI metrics for concentration risk and rigorous multi-currency EVE/NII simulation for IRRBB.</span>
+        </label>
+
+        <label class="opt-label" id="q3-m">
+          <input class="opt-radio" type="radio" name="q3" value="m" onchange="pick('q3','m')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Hybrid Proxies:</strong> Broad regulatory proxies supplemented with basic internal qualitative overlays or broad historical loss averages.</span>
+        </label>
+
+        <label class="opt-label" id="q3-b">
+          <input class="opt-radio" type="radio" name="q3" value="b" onchange="pick('q3','b')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Reverse Engineered:</strong> Capital add-ons are anchored to a pre-determined buffer figure, with qualitative narratives written to justify the number after the fact.</span>
+        </label>
+      </fieldset>
+      <div class="q-feedback" id="fb-q3" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-block">
+      <div class="q-header">
+        <div class="q-num" aria-hidden="true">4</div>
+        <div class="q-text">Risk Appetite Integration &amp; The Regulatory "Use Test"</div>
+      </div>
+      <fieldset class="options" aria-label="Question 4 options">
+        <legend class="sr-only">Risk appetite integration</legend>
+
+        <label class="opt-label" id="q4-g">
+          <input class="opt-radio" type="radio" name="q4" value="g" onchange="pick('q4','g')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Hardwired Operationally:</strong> ICAAP limits directly govern day-to-day transaction approvals and capital allocation via real-time early warning triggers (Watch, Amber, Red zones).</span>
+        </label>
+
+        <label class="opt-label" id="q4-m">
+          <input class="opt-radio" type="radio" name="q4" value="m" onchange="pick('q4','m')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Strategic Reference:</strong> ICAAP metrics are presented at quarterly executive sessions but function independently of daily business-line underwriting or product limits.</span>
+        </label>
+
+        <label class="opt-label" id="q4-b">
+          <input class="opt-radio" type="radio" name="q4" value="b" onchange="pick('q4','b')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Compliance Archive:</strong> The ICAAP is an annual seasonal submission with minimal impact on day-to-day capital allocation or structural corporate planning.</span>
+        </label>
+      </fieldset>
+      <div class="q-feedback" id="fb-q4" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block">
+      <div class="q-header">
+        <div class="q-num" aria-hidden="true">5</div>
+        <div class="q-text">Board Risk Committee Challenge &amp; Governance Audit Trail</div>
+      </div>
+      <fieldset class="options" aria-label="Question 5 options">
+        <legend class="sr-only">Board governance approach</legend>
+
+        <label class="opt-label" id="q5-g">
+          <input class="opt-radio" type="radio" name="q5" value="g" onchange="pick('q5','g')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Iterative Design Challenge:</strong> The Board Risk Committee evaluates scenario methodologies and structural assumptions before models are executed, creating a clear, minutes-based audit trail.</span>
+        </label>
+
+        <label class="opt-label" id="q5-m">
+          <input class="opt-radio" type="radio" name="q5" value="m" onchange="pick('q5','m')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Final Document Approval:</strong> The Board receives a detailed summary pack a few days prior to submission deadline for formal sign-off.</span>
+        </label>
+
+        <label class="opt-label" id="q5-b">
+          <input class="opt-radio" type="radio" name="q5" value="b" onchange="pick('q5','b')">
+          <div class="opt-ring"><div class="opt-dot"></div></div>
+          <span><strong>Management Led:</strong> Detailed evaluation occurs at sub-committee level; Board interaction is confined to formal end-of-cycle executive sign-off.</span>
+        </label>
+      </fieldset>
+      <div class="q-feedback" id="fb-q5" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Reset row -->
+    <div class="diag-reset-row" id="resetRow">
+      <button class="btn-reset" onclick="resetDiag()" aria-label="Reset diagnostic and start over">
+        ↺ &nbsp;Reset diagnostic
+      </button>
+    </div>
+
+  </div><!-- /diag-body -->
+</div><!-- /diag-wrap -->
+
+<!-- ═══ SCORE BOX ═══ -->
+<div class="score-box" id="scoreBox" role="region" aria-label="Diagnostic result">
+  <div class="score-visual">
+    <div class="score-big" id="scoreNum">—</div>
+    <div class="score-label-sm">out of 5</div>
+    <div class="score-meter">
+      <div class="score-meter-fill" id="scoreMeter" style="width:0%"></div>
+    </div>
+  </div>
+  <div class="score-divider" aria-hidden="true"></div>
   <div class="score-desc">
-    <strong id="score-title">—</strong>
-    <span id="score-detail">—</span>
+    <strong id="scoreTitle">—</strong>
+    <span id="scoreDetail">—</span>
   </div>
 </div>
 
-<!-- DYNAMICALLY GATED CONTENT SECTION -->
-<div class="gated-content" id="gatedContentSection">
+<!-- ═══ GATED CONTENT ═══ -->
+<div class="gated-content" id="gatedContent">
 
-  <!-- WEAKNESSES SECTION -->
+  <div class="advisory-banner">
+    <h3>The Path to Institutional Transformation</h3>
+    <p>The diagnostic above identifies clear opportunities to transition your risk framework into an institutional-grade strategic asset. Review the global best practice blueprints below to understand how these standards can be implemented within your specific KSA context — and where specialist advisory support accelerates the journey.</p>
+  </div>
+
   <div class="section-head">
-    <div class="section-head-text">The SAMA Supervisory Analysis Blueprint</div>
+    <div class="section-head-text">Global Best Practice Architecture — 5 Pillars</div>
     <div class="section-head-line"></div>
   </div>
 
-  <!-- W1 -->
-  <div class="weakness" id="w1">
-    <div class="w-header" onclick="tog('w1')">
-      <div class="w-num-col">01</div>
-      <div class="w-title-col">
-        <div class="w-title">The ICAAP and the business plan speak different languages</div>
-        <div class="w-sub">Capital planning disconnected from strategic planning</div>
+  <!-- PILLAR 1 -->
+  <div class="pillar" id="p1">
+    <div class="p-header" onclick="togPillar('p1')"
+         role="button" tabindex="0" aria-expanded="false"
+         onkeydown="if(event.key==='Enter'||event.key===' '){togPillar('p1');event.preventDefault();}">
+      <div class="p-num" aria-hidden="true">01</div>
+      <div class="p-title-col">
+        <div class="p-title">Material Risk Identification &amp; Risk Inventory Architecture</div>
+        <div class="p-sub">From static registers to dynamic bottom-up risk engines</div>
       </div>
-      <div class="w-sev">
-        <span class="sev-badge sev-high">High severity</span>
-        <div class="w-chevron">▼</div>
-      </div>
+      <div class="p-caret-col"><div class="p-caret" aria-hidden="true">▼</div></div>
     </div>
-    <div class="w-body">
-      <div class="w-inner">
-        <div class="w-desc">
-          The business plan projects SME book growth of 40% over three years. The ICAAP models a 15% growth scenario. They were written by different teams, in different quarters, anchored to different macro assumptions. <strong>SAMA examiners identify this within the first thirty minutes of a supervisory visit.</strong>
-          <br><br>
-          If your capital projections are not stress-tested against the same assumptions as your strategy, the ICAAP ceases to be a forward-looking management tool — it becomes a compliance artefact. That is not what Pillar 2 was designed to produce, and SAMA's supervisory expectations have evolved accordingly.
+    <div class="p-body">
+      <div class="p-inner">
+        <div class="p-desc">
+          Relying on a seasonal, top-down risk matrix creates critical blind spots across high-growth product categories. When structural shifts — such as rapid retail or digital expansion — are not captured through a continuous, independent identification process, risk profiles become decoupled from actual operational exposures. <strong>The output is an ICAAP that reflects last year's balance sheet, not next year's risk.</strong>
         </div>
+
+        <div class="benchmark-box">
+          <div class="bench-label">🌐 Global Standard — US Federal Reserve SR 15-18 &amp; UK PRA SS3/13</div>
+          <div class="bench-text">
+            Leading institutions execute a formal, bottom-up <strong>Risk Identification Process</strong> entirely independent of historical compliance baselines. Definitive quantitative and qualitative materiality thresholds evaluate every exposure across the enterprise. Verified material risks flow into a dynamic <strong>Risk Inventory</strong> that directly governs model inclusion parameters and scenario mapping cycles — not a spreadsheet, but a live governance infrastructure.
+          </div>
+        </div>
+
         <div class="fix-head">
-          <div class="fix-diamond">◆</div>
-          <div class="fix-head-text">Remediation</div>
+          <div class="fix-diamond" aria-hidden="true">◆</div>
+          <div class="fix-head-text">Targeted Remediation Roadmap</div>
           <div class="fix-head-line"></div>
         </div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Run a mandatory joint scenario-setting workshop between Risk and Finance at the start of every ICAAP cycle — align macro, growth, and margin assumptions before either team begins modelling</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>The ICAAP base scenario must be numerically identical to the base case in the strategic plan — same revenue, same credit growth, same cost trajectory</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Stress scenarios should directly test the downside of your specific strategic bets — real estate concentration, SME expansion, digital lending — not generic macroeconomic shocks</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Include a one-page reconciliation table in the ICAAP document showing exactly where assumptions align and where they deliberately diverge, with rationale</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Establish testable materiality thresholds (e.g., percentage of RWA or net income impact) to evaluate individual business lines, replacing subjective qualitative matrices.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Implement a Risk Inventory framework that automatically maps un-modelled Pillar 1 risks into structured Pillar 2 capital consideration tracks with clear ownership.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Formally integrate an emerging risk horizon-scanning process covering digitalisation dependencies, climate transition risk, and KSA-specific concentration dynamics.</span></div>
+
+        <div class="advisory-box">
+          <div class="advisory-box-label">◆ &nbsp;How We Help</div>
+          <div class="advisory-box-text">We build customised, auditable Risk ID Engines tailored to your target markets — replacing generic qualitative assessments with precise, data-driven frameworks that surface structural variations before they impact asset quality or regulatory standing.</div>
+        </div>
+
         <div class="examiner-box">
-          <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
-          <div class="examiner-q">"Walk me through how your growth assumptions in the business plan are reflected in your capital projections. What happens to your capital adequacy ratio if growth comes in 20 percentage points above your base case?"</div>
+          <div class="examiner-label">◆ &nbsp;The Supervisor's Question</div>
+          <div class="examiner-q">"Walk us through your independent verification process for material risk exclusion. What specific quantitative thresholds justify omitting emerging portfolio concentrations from your primary capital allocation models?"</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- W2 -->
-  <div class="weakness" id="w2">
-    <div class="w-header" onclick="tog('w2')">
-      <div class="w-num-col">02</div>
-      <div class="w-title-col">
-        <div class="w-title">Pillar 2 add-ons are regulatory minimums dressed up as internal assessments</div>
-        <div class="w-sub">Capital quantification lacks institution-specific justification</div>
+  <!-- PILLAR 2 -->
+  <div class="pillar" id="p2">
+    <div class="p-header" onclick="togPillar('p2')"
+         role="button" tabindex="0" aria-expanded="false"
+         onkeydown="if(event.key==='Enter'||event.key===' '){togPillar('p2');event.preventDefault();}">
+      <div class="p-num" aria-hidden="true">02</div>
+      <div class="p-title-col">
+        <div class="p-title">Advanced Stress Testing &amp; Non-Linear Scenario Design</div>
+        <div class="p-sub">Beyond routine macro shifts to sophisticated structural stress modelling</div>
       </div>
-      <div class="w-sev">
-        <span class="sev-badge sev-high">High severity</span>
-        <div class="w-chevron">▼</div>
-      </div>
+      <div class="p-caret-col"><div class="p-caret" aria-hidden="true">▼</div></div>
     </div>
-    <div class="w-body">
-      <div class="w-inner">
-        <div class="w-desc">
-          Walk into most KSA banks' ICAAP documents and the Pillar 2 add-ons are reverse-engineered from the regulatory floor. The capital number was anchored first; the stress narrative was written to justify it second. <strong>Experienced examiners have reviewed hundreds of these documents. They know the pattern immediately.</strong>
-          <br><br>
-          A genuine Pillar 2 assessment quantifies risks that Pillar 1 does not fully capture — concentration risk, IRRBB, operational risk beyond the standardised charge, reputational and strategic risk. The add-on must be a number your own scenarios produced, not a number anchored to a minimum.
+    <div class="p-body">
+      <div class="p-inner">
+        <div class="p-desc">
+          Applying basic linear macroeconomic shifts fails to reveal real vulnerabilities. Standard shocks scale historical baselines downward uniformly, obscuring compound systemic events — simultaneous interbank liquidity disruptions coupled with multi-sector counterparty defaults, or the kind of correlated stress that the 2008 and 2023 banking crises made visible. <strong>In KSA's context, oil revenue volatility, real estate concentration, and sovereign credit dependency create non-linear pathways that generic scenarios simply do not model.</strong>
         </div>
+
+        <div class="benchmark-box">
+          <div class="bench-label">🌐 Global Standard — US CCAR / Fed SR 11-7 &amp; UK PRA SS3/13</div>
+          <div class="bench-text">
+            Mature regulatory regimes require severe, <strong>bespoke hypothetical scenarios</strong> designed around a bank's distinct structural exposures. These frameworks integrate <strong>Reverse Stress Testing</strong> workflows — systematically pushing model boundaries until core capital thresholds break — illuminating non-obvious correlations across credit, market, and operational lines that standard scenario analysis misses entirely.
+          </div>
+        </div>
+
         <div class="fix-head">
-          <div class="fix-diamond">◆</div>
-          <div class="fix-head-text">Remediation</div>
+          <div class="fix-diamond" aria-hidden="true">◆</div>
+          <div class="fix-head-text">Targeted Remediation Roadmap</div>
           <div class="fix-head-line"></div>
         </div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Run bespoke stress scenarios for each material Pillar 2 risk — document the methodology and assumptions, not just the capital output</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>For concentration risk: calculate your HHI (Herfindahl-Hirschman Index) for single-name, sector, and geographic exposures — translate the excess concentration to a capital equivalent under your worst stress scenario</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>For IRRBB: model the impact of a 200bps parallel shift and a steepening scenario on both NII and EVE — SAMA expects quantification, not narrative description</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>For operational risk: supplement the standardised charge with a scenario analysis for your top 3–5 operational risk events specific to your business model and geography</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Your add-on rationale must stand alone: "We hold X% of Tier 1 for concentration risk because our top-10 exposures represent Y% of portfolio, and under our adverse scenario, stressed losses total Z"</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Replace linear macro shocks with tailored, narrative-driven scenarios testing structural vulnerabilities specific to your book — regional real estate corrections, hydrocarbon revenue contraction, and deposit migration under a sovereign stress.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Implement quantitative reverse stress testing to explicitly identify the precise conditions required to breach target capital ratios — not just what happens in stress, but what breaks the bank.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Build mathematically rigorous second-order cascade links, ensuring credit migration models dynamically adjust to concurrent market liquidity constraints and funding market disruptions.</span></div>
+
+        <div class="advisory-box">
+          <div class="advisory-box-label">◆ &nbsp;How We Help</div>
+          <div class="advisory-box-text">We design bespoke, multi-layered stress scenarios that accurately model localised portfolio concentrations within a KSA market context, calibrated to the severity expectations of PRA, APRA and Fed supervisory standards — and translated into SAMA's framework language.</div>
+        </div>
+
         <div class="examiner-box">
-          <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
-          <div class="examiner-q">"Your IRRBB add-on on page 14 — which rate scenario generated that number? What was your EVE sensitivity? And how does your concentration add-on reflect the real estate sector weight in your book?"</div>
+          <div class="examiner-label">◆ &nbsp;The Supervisor's Question</div>
+          <div class="examiner-q">"Detail your reverse stress testing methodology. What exact economic conditions or operational bottlenecks are required to exhaust your institutional capital conservation buffers? How does your real estate concentration interact with a liquidity stress?"</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- W3 -->
-  <div class="weakness" id="w3">
-    <div class="w-header" onclick="tog('w3')">
-      <div class="w-num-col">03</div>
-      <div class="w-title-col">
-        <div class="w-title">The Board owns the signature, not the process</div>
-        <div class="w-sub">Governance is documented but not embedded</div>
+  <!-- PILLAR 3 -->
+  <div class="pillar" id="p3">
+    <div class="p-header" onclick="togPillar('p3')"
+         role="button" tabindex="0" aria-expanded="false"
+         onkeydown="if(event.key==='Enter'||event.key===' '){togPillar('p3');event.preventDefault();}">
+      <div class="p-num" aria-hidden="true">03</div>
+      <div class="p-title-col">
+        <div class="p-title">Rigorous Pillar 2 Capital Quantification &amp; Attribution</div>
+        <div class="p-sub">Replacing qualitative buffers with auditable, high-precision models</div>
       </div>
-      <div class="w-sev">
-        <span class="sev-badge sev-med">Med–high</span>
-        <div class="w-chevron">▼</div>
-      </div>
+      <div class="p-caret-col"><div class="p-caret" aria-hidden="true">▼</div></div>
     </div>
-    <div class="w-body">
-      <div class="w-inner">
-        <div class="w-desc">
-          SAMA's ICAAP guidelines are explicit: the Board must own the process, not merely approve the output. In practice, most institutions present a polished 80-page document to the Board Risk Committee three days before the sign-off meeting. The Board approves. The governance box is ticked.
-          <br><br>
-          <strong>SAMA examiners have begun asking Board members direct questions during supervisory reviews.</strong> If a Board member cannot articulate the key stress scenarios, the material risks, or why the capital buffer is set at its current level — that is an immediate finding, regardless of how well the document reads on paper.
+    <div class="p-body">
+      <div class="p-inner">
+        <div class="p-desc">
+          Treating Pillar 2 add-ons as broad management overlays or flat percentage allocations compromises framework integrity. When capital numbers are reverse-engineered to match pre-determined targets, the ICAAP stops functioning as a risk-steering tool and becomes a document-production exercise. <strong>Experienced supervisors — whether from SAMA, PRA, or DFSA backgrounds — identify reverse-engineered add-ons within the first fifteen minutes of a model review.</strong>
         </div>
+
+        <div class="benchmark-box">
+          <div class="bench-label">🌐 Global Standard — APRA CPS 220 &amp; DFSA PIB Chapter 10 &amp; PRA SS31/15</div>
+          <div class="bench-text">
+            Top-tier banks deploy independent, fully documented quantitative models for all non-Pillar 1 risks. Single-name, sector, and geographic concentrations are evaluated using granular <strong>Herfindahl-Hirschman Indices (HHI)</strong> or multi-factor credit frameworks. <strong>IRRBB</strong> is measured via multi-currency <strong>Economic Value of Equity (EVE)</strong> and <strong>Net Interest Income (NII)</strong> simulation across parallel, steepening, and flattening rate environments. Operational risk is supplemented with institution-specific frequency-severity loss modelling.
+          </div>
+        </div>
+
         <div class="fix-head">
-          <div class="fix-diamond">◆</div>
-          <div class="fix-head-text">Remediation</div>
+          <div class="fix-diamond" aria-hidden="true">◆</div>
+          <div class="fix-head-text">Targeted Remediation Roadmap</div>
           <div class="fix-head-line"></div>
         </div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Involve the Board Risk Committee at the scenario design stage — they should challenge your stress assumptions before models are run, not after numbers are finalised</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Prepare a Board executive summary that is genuinely readable in 20 minutes — key risks, key scenarios, capital headroom under each scenario, and management action triggers</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Run a 30-minute ICAAP briefing for Board members ahead of each approval cycle — not a training session, a structured briefing on the 5 questions SAMA is likely to ask them</span></div>
-        <div class="fix-row"><span class="fix-arrow">→</span><span>Document Board challenge specifically in committee minutes — questions raised, management responses given, and any resulting changes to assumptions. This is the evidence trail SAMA looks for</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Implement independent quantitative attribution for concentration risk using granular single-name and sector HHI models — translate excess concentration to a capital equivalent under stress.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Uplift IRRBB frameworks to cover parallel shifts, steepening, and flattening across all material currencies — verify both EVE sensitivity and NII impact under a 200bps shock.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Supplement standardised operational risk treatments with scenario-driven frequency-severity models calibrated to internal loss history and KSA-specific operational risk events.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Each add-on rationale must stand independently: "We hold X% of Tier 1 for concentration risk because top-10 exposures represent Y% of the portfolio and stressed losses under our adverse scenario total Z."</span></div>
+
+        <div class="advisory-box">
+          <div class="advisory-box-label">◆ &nbsp;How We Help</div>
+          <div class="advisory-box-text">We replace qualitative placeholders with fully auditable, defensible quantitative model architectures — concentration frameworks, IRRBB EVE/NII models, and operational risk scenario engines — all documented to withstand intensive regulatory validation cycles under SAMA, DFSA, or international standards.</div>
+        </div>
+
         <div class="examiner-box">
-          <div class="examiner-label">◆ &nbsp;What examiners actually ask</div>
-          <div class="examiner-q">"If we were to speak separately with your Board Risk Committee Chair, could they walk us through your three stress scenarios and explain the capital implications of your adverse case?"</div>
+          <div class="examiner-label">◆ &nbsp;The Supervisor's Question</div>
+          <div class="examiner-q">"Walk us through the mathematical connection between your sector concentration index and your Pillar 2 add-on. How do your current model weights account for correlation within your real estate book under a simultaneous rate and credit stress?"</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CLOSING -->
+  <!-- PILLAR 4 -->
+  <div class="pillar" id="p4">
+    <div class="p-header" onclick="togPillar('p4')"
+         role="button" tabindex="0" aria-expanded="false"
+         onkeydown="if(event.key==='Enter'||event.key===' '){togPillar('p4');event.preventDefault();}">
+      <div class="p-num" aria-hidden="true">04</div>
+      <div class="p-title-col">
+        <div class="p-title">Risk Appetite Integration &amp; Operational "Use Test"</div>
+        <div class="p-sub">Transforming compliance documentation into strategic steering mechanisms</div>
+      </div>
+      <div class="p-caret-col"><div class="p-caret" aria-hidden="true">▼</div></div>
+    </div>
+    <div class="p-body">
+      <div class="p-inner">
+        <div class="p-desc">
+          When ICAAP frameworks function purely as isolated annual exercises, they provide no protection against real-time risk accumulation. If capital thresholds and risk appetite metrics operate in silos — disconnected from product underwriting limits, business strategy, and performance metrics — the framework becomes structurally irrelevant between submission cycles. <strong>The regulatory "Use Test" is a direct check on this: supervisors ask for evidence that ICAAP outputs actually changed a business decision within the past twelve months.</strong>
+        </div>
+
+        <div class="benchmark-box">
+          <div class="bench-label">🌐 Global Standard — UK PRA SS31/15 &amp; Basel III Pillar 2 Guidance</div>
+          <div class="bench-text">
+            International best practice requires full execution of the <strong>Regulatory Use Test</strong>. Capital adequacy metrics are embedded within daily corporate governance — underwriting targets, <strong>Risk Appetite Statements (RAS)</strong>, and strategic planning goals are directly constrained by live ICAAP parameters. <strong>Early Warning Sign (EWS) triggers</strong> (Watch, Amber, Red zones) create automatic escalation pathways before capital limits are breached rather than after.
+          </div>
+        </div>
+
+        <div class="fix-head">
+          <div class="fix-diamond" aria-hidden="true">◆</div>
+          <div class="fix-head-text">Targeted Remediation Roadmap</div>
+          <div class="fix-head-line"></div>
+        </div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Hardwire ICAAP capital results into your Risk Appetite Statement — each material risk dimension should have a defined Watch / Amber / Red threshold with documented escalation actions.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Integrate a structured recovery planning framework linking specific capital buffer triggers directly to executable management actions — not narrative intentions but documented, approved responses.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Deploy risk-adjusted return metrics (RAROC) derived from Pillar 2 capital into business-line performance evaluation — ensuring growth in high-risk segments is priced for the actual capital consumed.</span></div>
+
+        <div class="advisory-box">
+          <div class="advisory-box-label">◆ &nbsp;How We Help</div>
+          <div class="advisory-box-text">We embed risk metrics directly into daily decision-making infrastructure — turning a compliance submission into an active capital allocation tool. Our frameworks provide the documented Use Test evidence that supervisors look for: real decisions influenced by real ICAAP parameters.</div>
+        </div>
+
+        <div class="examiner-box">
+          <div class="examiner-label">◆ &nbsp;The Supervisor's Question</div>
+          <div class="examiner-q">"Provide an example of an asset concentration, product limit, or transaction that was adjusted or declined over the past twelve months as a direct result of your ICAAP capital thresholds or Risk Appetite Statement."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR 5 -->
+  <div class="pillar" id="p5">
+    <div class="p-header" onclick="togPillar('p5')"
+         role="button" tabindex="0" aria-expanded="false"
+         onkeydown="if(event.key==='Enter'||event.key===' '){togPillar('p5');event.preventDefault();}">
+      <div class="p-num" aria-hidden="true">05</div>
+      <div class="p-title-col">
+        <div class="p-title">Proactive Board Challenge, Governance &amp; Audit Trails</div>
+        <div class="p-sub">From late-stage approval to active, structured strategic oversight</div>
+      </div>
+      <div class="p-caret-col"><div class="p-caret" aria-hidden="true">▼</div></div>
+    </div>
+    <div class="p-body">
+      <div class="p-inner">
+        <div class="p-desc">
+          Treating the Board Risk Committee as a downstream approval checkpoint fundamentally misunderstands its role in the ICAAP. When complex documentation arrives at senior leadership days before submission, review shifts from critical challenge to passive endorsement. <strong>This is no longer a safe posture — supervisors across PRA, APRA, and SAMA jurisdictions have begun directly interviewing Board members during examinations, asking them to articulate scenario assumptions and capital implications without reference to the document.</strong>
+        </div>
+
+        <div class="benchmark-box">
+          <div class="bench-label">🌐 Global Standard — Basel Corporate Governance Principles &amp; UK PRA SS5/16</div>
+          <div class="bench-text">
+            Mature governance standards require the Board Risk Committee to actively lead the foundational phases of capital planning. Executive leadership formally challenges baseline scenarios, debates stress parameters, and confirms risk identification methodologies <strong>prior to model execution</strong> — with all feedback documented in committee minutes. The Board's challenge is the governance trail; without it, the process has no verifiable oversight history.
+          </div>
+        </div>
+
+        <div class="fix-head">
+          <div class="fix-diamond" aria-hidden="true">◆</div>
+          <div class="fix-head-text">Targeted Remediation Roadmap</div>
+          <div class="fix-head-line"></div>
+        </div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Re-engineer the capital planning calendar to secure formal Board Risk Committee input on scenario design and risk mapping before models are executed — not at document review stage.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Build an executive dashboard summarising: top 5 material risks, key stress scenario outcomes, capital headroom in each scenario, and automated management action trigger points.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Document all Board queries, management responses, and model updates in committee minutes with specificity — dates, questions raised, changes made. This is the audit trail that satisfies a SAMA supervisory visit.</span></div>
+        <div class="fix-row"><span class="fix-arr" aria-hidden="true">→</span><span>Run a structured 30-minute ICAAP briefing for Board members ahead of each cycle — covering the five questions a supervisor is likely to ask them independently during an examination.</span></div>
+
+        <div class="advisory-box">
+          <div class="advisory-box-label">◆ &nbsp;How We Help</div>
+          <div class="advisory-box-text">We deliver targeted executive briefings and governance restructuring that prepares Board members and senior leadership for direct supervisory interviews — turning effective oversight from a procedural box into a demonstrable, documented strategic asset.</div>
+        </div>
+
+        <div class="examiner-box">
+          <div class="examiner-label">◆ &nbsp;The Supervisor's Question</div>
+          <div class="examiner-q">"If we were to speak independently with your Board Risk Committee Chair, how effectively could they articulate the foundational methodologies, key stress assumptions, and capital buffer logic underpinning your ICAAP submission?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing -->
   <div class="closing-wrap">
     <div class="closing">
-      <div class="closing-title">The underlying pattern</div>
-      <p>All three weaknesses share the same root cause: the ICAAP is treated as a <strong>regulatory submission</strong> rather than a genuine management tool.</p>
-      <p>The institutions that receive the cleanest SAMA supervisory reviews are the ones where the CRO can walk into the examination discussion without the document — because the numbers and narratives are alive in how the bank is actually run, not archived in a PDF that surfaces once a year.</p>
-      <p>That is the standard worth building towards. And it begins with the quality of the conversation between Risk, Finance, and the Board — long before the document is written.</p>
+      <div class="closing-title">Elevating the Standard</div>
+      <p>True risk maturation requires a deliberate transition from compliance checklist to execution capital optimisation. When internal models are fully integrated with strategic planning, enterprise risk appetite, and active executive governance, the ICAAP functions as originally intended — a powerful management tool engineered to protect and optimise your institution's balance sheet.</p>
+      <p>The gap between global best practice and current KSA market norms is narrowing. <strong>The institutions that close it proactively will carry a durable competitive and regulatory advantage — in capital costs, in supervisory relationships, and in the quality of risk decisions made every day.</strong></p>
     </div>
   </div>
 
-</div> <!-- /gated-content -->
+</div><!-- /gated-content -->
 
-<!-- FOOTER DISCLAIMER -->
-<div class="footer-disclaimer">
-  <strong>Disclaimer:</strong> The views expressed in this article are solely my own and do not represent, reflect or constitute the views, opinions, or positions of my current or any past employer. This content is intended for professional knowledge-sharing purposes only.
+<!-- Footer disclaimer -->
+<div class="footer-disclaimer" role="note">
+  <strong>Disclaimer:</strong> The views expressed are solely the author's own and do not represent, reflect or constitute the views, opinions or positions of any current or past employer. Diagnostic benchmarks and remediation frameworks reference publicly available international supervisory standards across relevant jurisdictions. This content is for professional knowledge-sharing purposes only.
 </div>
 
-<!-- HASHTAGS -->
+<!-- Hashtags -->
 <div class="hashtags">
-  #ICAAP &nbsp;#Pillar2 &nbsp;#SAMA &nbsp;#BaselIII &nbsp;#BaselIV &nbsp;#CreditRisk &nbsp;#OperationalRisk &nbsp;#LiquidityRisk &nbsp;#KSABanking &nbsp;#RiskManagement &nbsp;#FRM &nbsp;#GCCFinance &nbsp;#Vision2030 &nbsp;#RegulatoryRisk
+  <a href="#">#ICAAP</a>
+  <a href="#">#Pillar2</a>
+  <a href="#">#SAMA</a>
+  <a href="#">#BaselIII</a>
+  <a href="#">#BaselIV</a>
+  <a href="#">#CreditRisk</a>
+  <a href="#">#OperationalRisk</a>
+  <a href="#">#StressTesting</a>
+  <a href="#">#KSABanking</a>
+  <a href="#">#RiskManagement</a>
+  <a href="#">#FRM</a>
+  <a href="#">#GCCFinance</a>
+  <a href="#">#Vision2030</a>
+  <a href="#">#RegulatoryCapital</a>
+  <a href="#">#EnterpriseRisk</a>
 </div>
+
+<!-- Visually hidden utility class -->
+<style>.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
 
 <script>
-/* ─── Progress bar ─── */
-window.addEventListener('scroll', () => {
-  const d = document.documentElement;
-  document.getElementById('prog').style.width =
-    (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
-});
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+const state = {
+  answers:       {},          // { q1: 'g', q2: 'm', ... }
+  answeredCount: 0,
+  unlocked:      false        // guard: prevent multiple unlocks
+};
 
-/* ─── Self-assessment ─── */
-function toggleAssess() {
-  const trig = document.getElementById('atrig');
-  const body = document.getElementById('abody');
-  trig.classList.toggle('open');
-  body.classList.toggle('open');
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  const d   = document.documentElement;
+  const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+  document.getElementById('prog').style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+/* ═══════════════════════════════════════════
+   DIAGNOSTIC TOGGLE
+═══════════════════════════════════════════ */
+function toggleDiag() {
+  const trig = document.getElementById('diagTrig');
+  const body = document.getElementById('diagBody');
+  const open = trig.classList.contains('open');
+  trig.classList.toggle('open', !open);
+  body.classList.toggle('open', !open);
+  trig.setAttribute('aria-expanded', String(!open));
 }
 
-const fbText = {
+/* ═══════════════════════════════════════════
+   QUESTION PICK — core handler
+═══════════════════════════════════════════ */
+const FB = {
   q1: {
-    g: '<strong>Strong.</strong> Alignment between the ICAAP and the strategic plan is precisely what SAMA expects. Ensure your stress scenarios explicitly test the downside of your specific strategic bets — not just generic macro shocks.',
-    m: '<strong>Partial — a common gap.</strong> "Similar timeframe" is insufficient. Examiners will probe whether macro and growth assumptions are genuinely consistent. A formal joint scenario-setting workshop between Risk and Finance is the standard remediation.',
-    b: '<strong>High-risk finding.</strong> Disconnected documents with separate assumptions is the most frequently cited ICAAP weakness in KSA supervisory reviews. Remediation starts with a governance bridge — formally linking the ICAAP cycle calendar to the strategic planning process.'
+    g: '<strong>Global Target Achieved:</strong> Your bottom-up approach aligns with US Federal Reserve SR 15-18 expectations, isolating emerging risks effectively before they propagate into material books. Ensure materiality thresholds are formally documented and tested at each cycle.',
+    m: '<strong>Structural Gap Identified:</strong> Standard registers miss real-time risk movements. Transitioning to a quantitative Risk Inventory ensures high-growth digital or retail assets are captured in primary capital models — not discovered during a supervisory visit.',
+    b: '<strong>High-Risk Compliance Habit:</strong> Static registers leave your framework blind to sudden asset quality shifts. Immediate re-engineering is needed to implement transparent, testable materiality thresholds consistent with PRA and Fed expectations.'
   },
   q2: {
-    g: '<strong>Strong.</strong> Institution-specific scenarios are the hallmark of a mature ICAAP. Ensure the scenario narratives are fully documented — examiners want to interrogate the logic and methodology, not just validate the capital number.',
-    m: '<strong>Adequate, but improvable.</strong> The internal overlays are the right instinct — ensure they are quantified with a documented methodology, not just described qualitatively. Examiners will ask: "What specific assumption drove the overlay above the regulatory floor?"',
-    b: '<strong>Significant gap.</strong> Using regulatory minimums as Pillar 2 capital is circular reasoning — the floor justifies the floor. You need at least three institution-specific stress scenarios generating defensible, independently derived add-ons.'
+    g: '<strong>Global Target Achieved:</strong> Bespoke, non-linear scenarios paired with reverse stress models match advanced PRA and CCAR expectations. Ensure cascade mechanisms between credit migration and liquidity stress are explicitly modelled and documented.',
+    m: '<strong>Methodological Gap Identified:</strong> Linear historical macro shifts fail to surface compound tail risks. Integrating secondary cascade dependencies — particularly between credit deterioration and liquidity stress — will significantly improve model resilience and supervisory defensibility.',
+    b: '<strong>High-Risk Compliance Habit:</strong> Minimum regulatory overlays transform stress testing into an administrative routine. Implementing bespoke, narrative-driven scenarios is critical to capturing actual portfolio vulnerabilities under SAMA\'s evolving supervisory expectations.'
   },
   q3: {
-    g: '<strong>Strong governance.</strong> This is the benchmark SAMA is moving towards across the sector. Ensure the Board\'s challenge is documented specifically in committee minutes — dates, questions raised, management responses, and any resulting changes to the document.',
-    m: '<strong>Common — but increasingly insufficient.</strong> SAMA has been progressively raising the bar on Board engagement. A presentation at the approval stage means the Board is reviewing conclusions, not assumptions. The fix is earlier, structured involvement at the scenario design stage.',
-    b: '<strong>Governance risk.</strong> SAMA examiners have begun directly questioning Board members during supervisory visits. If a Board member cannot articulate the material risks and stress scenarios in the ICAAP, that is an immediate supervisory finding — regardless of how well the document is written.'
+    g: '<strong>Global Target Achieved:</strong> Independent HHI / EVE / NII models provide a highly defensible infrastructure that withstands detailed supervisory challenge. Ensure all model methodologies are documented in a formal Model Inventory consistent with SR 11-7 standards.',
+    m: '<strong>Quantification Gap Identified:</strong> Supplementing regulatory proxies with qualitative overlays dilutes model precision. Developing independent, multi-factor attribution frameworks for concentration and IRRBB will optimise capital buffers and strengthen your Use Test evidence.',
+    b: '<strong>High-Risk Compliance Habit:</strong> Reverse-engineering Pillar 2 add-ons creates significant supervisory vulnerability. Implementing independent, fully auditable models is essential — APRA, DFSA, and SAMA examiners are trained specifically to identify reverse-engineered capital numbers.'
+  },
+  q4: {
+    g: '<strong>Global Target Achieved:</strong> Hardwiring ICAAP thresholds into daily risk appetite statements represents full execution of the PRA Use Test. Maintain documented evidence of at least one business decision per cycle that was directly influenced by an ICAAP threshold.',
+    m: '<strong>Integration Gap Identified:</strong> Quarterly reference metrics limit strategic utility. Integrating real-time EWS triggers into business-line underwriting will deliver measurable Use Test evidence — and provide a genuine early warning function between annual cycles.',
+    b: '<strong>High-Risk Compliance Habit:</strong> An isolated annual submission exposes the institution to unmonitored tail-risk accumulation between cycles. Supervisors will ask for Use Test evidence; without it, the ICAAP\'s regulatory defensibility is structurally compromised.'
+  },
+  q5: {
+    g: '<strong>Global Target Achieved:</strong> Iterative Board challenge aligned with Basel Committee and PRA governance standards. Ensure committee minutes specifically document challenge questions, management responses, and resulting model changes — not just approval decisions.',
+    m: '<strong>Governance Gap Identified:</strong> Late-stage document review limits effective Board challenge. Early-stage scenario workshops will materially improve your governance audit trail — and prepare Board members for the direct supervisory questioning increasingly common in KSA examinations.',
+    b: '<strong>High-Risk Compliance Habit:</strong> Management-only review creates substantial governance risk. SAMA examiners now directly interview Board members; if they cannot articulate scenario assumptions and capital implications without the document, that is an immediate examination finding.'
   }
 };
 
-const answers = {};
-let answeredCount = 0;
+function pick(qid, type) {
+  const wasAnswered = !!state.answers[qid];
+  if (!wasAnswered) state.answeredCount++;
+  state.answers[qid] = type;
 
-function pick(el, qid, type) {
-  const qwrap = el.closest('.q-wrap');
-  qwrap.querySelectorAll('.opt').forEach(o => o.classList.remove('g','b','m'));
-  el.classList.add(type);
+  /* Update visual state on labels */
+  ['g','m','b'].forEach(t => {
+    const el = document.getElementById(qid + '-' + t);
+    if (el) el.classList.remove('g','m','b');
+  });
+  const chosen = document.getElementById(qid + '-' + type);
+  if (chosen) chosen.classList.add(type);
+
+  /* Show feedback */
   const fb = document.getElementById('fb-' + qid);
-  if (!answers[qid]) answeredCount++;
-  answers[qid] = type;
-  fb.innerHTML = fbText[qid][type];
-  fb.classList.add('show');
-  if (answeredCount === 3) unlockContent();
+  if (fb) {
+    fb.innerHTML    = FB[qid][type];
+    fb.className    = 'q-feedback show fb-' + type;
+  }
+
+  /* Update progress counter and dots */
+  const count = state.answeredCount;
+  const progEl = document.getElementById('progText');
+  if (progEl) progEl.textContent = count + ' / 5';
+
+  for (let i = 1; i <= 5; i++) {
+    const dot = document.getElementById('d' + i);
+    if (dot) dot.classList.toggle('answered', i <= count);
+  }
+
+  /* Show reset button once any answer is given */
+  const rr = document.getElementById('resetRow');
+  if (rr) rr.classList.add('show');
+
+  /* Unlock content when all 5 answered */
+  if (count === 5 && !state.unlocked) {
+    state.unlocked = true;
+    unlockContent();
+  }
 }
 
+/* ═══════════════════════════════════════════
+   UNLOCK GATED CONTENT
+═══════════════════════════════════════════ */
 function unlockContent() {
-  const vals = Object.values(answers);
-  const good = vals.filter(v => v === 'g').length;
-  const mid  = vals.filter(v => v === 'm').length;
-  
-  // 1. Reveal Scoring Frame & Remediation Content Container
-  const sb = document.getElementById('scorebox');
-  const gc = document.getElementById('gatedContentSection');
-  sb.classList.add('show');
-  gc.classList.add('show');
-  
-  // 2. Compute Score Tiers
-  document.getElementById('scorenum').textContent = good + '/3';
+  const vals   = Object.values(state.answers);
+  const good   = vals.filter(v => v === 'g').length;
+  const mid    = vals.filter(v => v === 'm').length;
+
+  /* Score box */
+  const sb = document.getElementById('scoreBox');
+  const gc = document.getElementById('gatedContent');
+  if (sb) { sb.classList.add('show'); }
+  if (gc) { gc.classList.add('show'); }
+
+  document.getElementById('scoreNum').textContent = good + '/5';
+
+  const pct = (good / 5) * 100;
+  document.getElementById('scoreMeter').style.width = pct + '%';
+
   const tiers = [
-    ['Material weaknesses identified', 'Multiple dimensions require urgent alignment. Prioritise connecting the ICAAP to your strategic planning cycle first — it cascades directly into the other gaps.'],
-    ['Foundations in place, targeted gaps remain', 'Solid base with specific operational weaknesses. Focus on the lowest-scoring dimension — typically Pillar 2 quantification or Board governance depth.'],
-    ['One area to strengthen to examination standard', 'Strong in two out of three dimensions. Closing the remaining gap brings your ICAAP process to full SAMA supervisory standard.'],
-    ['Examination-ready process', 'Your ICAAP reflects genuine management use, not merely regulatory compliance. The differentiator now is documentation quality — ensuring examiner questions are answered before they are asked.']
+    ['Compliance Gaps Identified',
+     'Multiple core dimensions require remediation. Prioritise independent Pillar 2 capital attribution and transparent materiality thresholds first — these cascade into the other pillars.'],
+    ['Foundations Established — Operational Gaps Remain',
+     'Solid baseline with localised gaps. Focus on refining stress scenario design and establishing automated Early Warning Sign triggers to close the gap to global standards.'],
+    ['Advanced Regional Standard — Global Gaps Exist',
+     'Strong performance across multiple pillars. Closing remaining gaps in model integration and early-stage Board governance will bring your framework to full international standard.'],
+    ['Global Best Practice Standard Achieved',
+     'Your risk architecture reflects active management use, fully aligned with advanced international expectations. The differentiator now is documentation quality — ensuring supervisory questions are answered before they are asked.']
   ];
-  const idx = good === 3 ? 3 : good === 2 ? 2 : mid >= 2 ? 1 : 0;
-  document.getElementById('score-title').textContent  = tiers[idx][0];
-  document.getElementById('score-detail').textContent = tiers[idx][1];
-  
-  // 3. Smooth Auto-Scroll down to the diagnostic analysis panel
+
+  const idx = good === 5 ? 3 : good >= 3 ? 2 : (good + mid) >= 3 ? 1 : 0;
+  document.getElementById('scoreTitle').textContent  = tiers[idx][0];
+  document.getElementById('scoreDetail').textContent = tiers[idx][1];
+
+  /* Smooth scroll to score */
   setTimeout(() => {
-    sb.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 180);
+    const el = document.getElementById('scoreBox');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 200);
 }
 
-/* ─── Weakness accordion ─── */
-function tog(id) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.weakness').forEach(w => w.classList.remove('open'));
-  if (!isOpen) el.classList.add('open');
+/* ═══════════════════════════════════════════
+   RESET DIAGNOSTIC
+═══════════════════════════════════════════ */
+function resetDiag() {
+  /* Clear state */
+  state.answers       = {};
+  state.answeredCount = 0;
+  state.unlocked      = false;
+
+  /* Reset radio inputs */
+  document.querySelectorAll('.opt-radio').forEach(r => { r.checked = false; });
+
+  /* Reset label styles */
+  document.querySelectorAll('.opt-label').forEach(l => l.classList.remove('g','m','b'));
+
+  /* Hide all feedbacks */
+  document.querySelectorAll('.q-feedback').forEach(f => {
+    f.className = 'q-feedback';
+    f.innerHTML = '';
+  });
+
+  /* Reset progress */
+  document.getElementById('progText').textContent = '0 / 5';
+  for (let i = 1; i <= 5; i++) {
+    const d = document.getElementById('d' + i);
+    if (d) d.classList.remove('answered');
+  }
+
+  /* Hide reset button */
+  const rr = document.getElementById('resetRow');
+  if (rr) rr.classList.remove('show');
+
+  /* Hide score and gated content */
+  document.getElementById('scoreBox').classList.remove('show');
+  document.getElementById('gatedContent').classList.remove('show');
+
+  /* Collapse all pillars */
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('open'));
+
+  /* Scroll back to diagnostic */
+  setTimeout(() => {
+    document.getElementById('diagWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
+
+/* ═══════════════════════════════════════════
+   PILLAR ACCORDION
+═══════════════════════════════════════════ */
+function togPillar(id) {
+  const el     = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.pillar').forEach(p => {
+    p.classList.remove('open');
+    const h = p.querySelector('.p-header');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  });
+  if (!isOpen) {
+    el.classList.add('open');
+    const h = el.querySelector('.p-header');
+    if (h) h.setAttribute('aria-expanded', 'true');
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL — pillars
+═══════════════════════════════════════════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('vis');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+
+document.querySelectorAll('.pillar').forEach(p => revealObs.observe(p));
 </script>
 </body>
 </html>
